@@ -1,0 +1,248 @@
+dn: o=HCSC
+objectClass: top
+objectClass: Organization
+o: HCSC
+
+dn: ou=EMPL,o=HCSC
+objectClass: top
+objectClass: organizationalUnit
+ou: EMPL
+
+dn: ou=Services,o=HCSC
+objectClass: top
+objectClass: organizationalUnit
+ou: Services
+
+dn: ou=Framework,ou=Services,o=HCSC
+objectClass: top
+objectClass: organizationalUnit
+ou: Framework
+
+dn: ou=Authorities,ou=Framework,ou=Services,o=HCSC
+objectClass: top
+objectClass: organizationalUnit
+ou: Authorities
+
+dn: ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+objectClass: top
+objectClass: organizationalUnit
+ou: Data Grid
+
+dn: ou=Roles,ou=Framework,ou=Services,o=HCSC
+objectClass: top
+objectClass: organizationalUnit
+ou:Roles
+
+####Data Grid Authorities
+
+dn: cn=COVERAGE_FUNCTION_DATA_RW,ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+objectClass: HCSCFwAuthority
+objectClass: Top
+cn: COVERAGE_FUNCTION_DATA_RW
+HCSCFwRoleMem: cn=DG Coverages Query,ou=Roles,ou=Framework,ou=Services,o=HCSC
+
+dn: cn=INCENTIVES_FUNCTION_DATA_RW,ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+objectClass: HCSCFwAuthority
+objectClass: Top
+cn: INCENTIVES_FUNCTION_DATA_RW
+HCSCFwAuthUsers: cn=incentivesUser,ou=EMPL,o=HCSC
+HCSCFwRoleMem: cn=DG Incentives Query,ou=Roles,ou=Framework,ou=Services,o=HCSC
+
+dn: cn=MEMBER_ADMIN_CLUSTER_R,ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+objectClass: HCSCFwAuthority
+objectClass: Top
+cn: MEMBER_ADMIN_CLUSTER_R
+HCSCFwRoleMem: cn=DG Grid JMX Use,ou=Roles,ou=Framework,ou=Services,o=HCSC
+HCSCFwAuthUsers: cn=pulseUser,ou=EMPL,o=HCSC
+HCSCFwRoleMem: cn=DG Grid Pulse User,ou=Roles,ou=Framework,ou=Services,o=HCSC
+
+dn: cn=MEMBER_ADMIN_CLUSTER_RWM,ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+objectClass: HCSCFwAuthority
+objectClass: Top
+cn: MEMBER_ADMIN_CLUSTER_RWM
+HCSCFwAuthUsers: cn=userAdminClusterRWM,ou=EMPL,o=HCSC
+HCSCFwAuthUsers: cn=superUser,ou=EMPL,o=HCSC
+HCSCFwAuthUsers: cn=E6737010,ou=EMPL,o=HCSC
+HCSCFwRoleMem: cn=DG Grid Membership Admin,ou=Roles,ou=Framework,ou=Services,o=HCSC
+
+dn: cn=MEMBER_ADMIN_DATA_RWM,ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+objectClass: HCSCFwAuthority
+objectClass: Top
+cn: MEMBER_ADMIN_DATA_RWM
+HCSCFwAuthUsers: cn=MBSHPGRD,ou=EMPL,o=HCSC
+HCSCFwAuthUsers: cn=superUser,ou=EMPL,o=HCSC
+HCSCFwAuthUsers: cn=E6737010,ou=EMPL,o=HCSC
+HCSCFwRoleMem: cn=DG Grid Membership Loader,ou=Roles,ou=Framework,ou=Services,o=HCSC
+
+dn: cn=MEMBER_FUNCTION_DATA_RW,ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+objectClass: HCSCFwAuthority
+objectClass: Top
+cn: MEMBER_FUNCTION_DATA_RW
+HCSCFwRoleMem: cn=DG Members Query,ou=Roles,ou=Framework,ou=Services,o=HCSC
+
+####Roles
+
+dn: cn=DG Grid Pulse User,ou=Roles,ou=Framework,ou=Services,o=HCSC
+objectClass: top
+objectClass: HCSCFwRole
+cn=DG Grid Pulse User
+HCSCFwAuthorities: cn=MEMBER_ADMIN_CLUSTER_R,ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+HCSCFwMembers: cn=pulseUser,ou=EMPL,o=HCSC
+HCSCFwProductDN: ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+
+dn: cn=DG Coverages Query,ou=Roles,ou=Framework,ou=Services,o=HCSC
+objectClass: HCSCFwRole
+objectClass: Top
+cn: DG Coverages Query
+HCSCFwAuthorities: cn=COVERAGE_FUNCTION_DATA_RW,ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+HCSCFwMembers:
+HCSCFwProductDN: ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+
+dn: cn=DG Grid JMX Use,ou=Roles,ou=Framework,ou=Services,o=HCSC
+objectClass: HCSCFwRole
+objectClass: Top
+cn: DG Grid JMX Use
+HCSCFwAuthorities: cn=MEMBER_ADMIN_CLUSTER_R,ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+HCSCFwMembers:
+HCSCFwProductDN: ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+
+dn: cn=DG Grid Membership Admin,ou=Roles,ou=Framework,ou=Services,o=HCSC
+objectClass: HCSCFwRole
+objectClass: Top
+cn: DG Grid Membership Admin
+HCSCFwAuthorities: cn=MEMBER_ADMIN_CLUSTER_RWM,ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+HCSCFwAuthorities: cn=MEMBER_ADMIN_DATA_RWM,ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+HCSCFwMembers: cn=superUser,ou=EMPL,o=HCSC
+HCSCFwMembers: cn=E6737010,ou=EMPL,o=HCSC
+HCSCFwProductDN: ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+
+dn: cn=DG Grid Membership Loader,ou=Roles,ou=Framework,ou=Services,o=HCSC
+objectClass: HCSCFwRole
+objectClass: Top
+cn: DG Grid Membership Loader
+HCSCFwAuthorities: cn=MEMBER_ADMIN_DATA_RWM,ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+HCSCFwMembers: cn=MBSHPGRD,ou=EMPL,o=HCSC
+HCSCFwProductDN: ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+
+dn: cn=DG Grid Pulse User,ou=Roles,ou=Framework,ou=Services,o=HCSC
+objectClass: HCSCFwRole
+objectClass: Top
+cn: DG Grid Pulse User
+HCSCFwAuthorities: cn=MEMBER_ADMIN_CLUSTER_R,ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+HCSCFwMembers: cn=pulseUser,ou=EMPL,o=HCSC
+HCSCFwProductDN: ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+
+dn: cn=DG Grid Super Admin,ou=Roles,ou=Framework,ou=Services,o=HCSC
+objectClass: HCSCFwRole
+objectClass: Top
+cn: DG Grid Super Admin
+HCSCFwAuthorities: cn=DG Grid Membership Admin,ou=Roles,ou=Framework,ou=Services,o=HCSC
+HCSCFwMembers: cn=superuser,ou=EMPL,O=HCSC
+HCSCFwMembers: cn=E6737010,ou=EMPL,o=HCSC
+HCSCFwProductDN: ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+
+dn: cn=DG Incentives Query,ou=Roles,ou=Framework,ou=Services,o=HCSC
+objectClass: HCSCFwRole
+objectClass: Top
+cn: DG Incentives Query
+HCSCFwAuthorities: cn=INCENTIVES_FUNCTION_DATA_RW,ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+HCSCFwMembers: cn=incentivesUser,ou=EMPL,o=HCSC
+HCSCFwProductDN: ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+
+dn: cn=DG Members Query,ou=Roles,ou=Framework,ou=Services,o=HCSC
+objectClass: HCSCFwRole
+objectClass: Top
+cn: DG Members Query
+HCSCFwAuthorities: cn=MEMBER_FUNCTION_DATA_RW,ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+HCSCFwMembers:
+HCSCFwProductDN: ou=Data Grid,ou=Roles,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+
+dn: cn=DG Membership Region Troubleshooting,ou=Roles,ou=Framework,ou=Services,o=HCSC
+objectClass: HCSCFwRole
+objectClass: Top
+cn: DG Membership Region Troubleshooting
+HCSCFwAuthorities: cn=MEMBER_ADMIN_DATA_RWM,ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+HCSCFwMembers:
+HCSCFwProductDN: ou=Data Grid,ou=Roles,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+
+####Users
+
+dn: cn=MBSHPGRD,ou=EMPL,o=HCSC
+objectClass: HCSCLDAPUser
+objectClass: inetOrgPerson
+objectClass: ndsLoginProperties
+objectClass: organizationalPerson
+objectClass: Person
+objectClass: Top
+cn: MBSHPGRD
+HCSCFwAuthorities: cn=MEMBER_ADMIN_DATA_RWM,ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+HCSCFwProductDN: ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+HCSCFwRoleMem: cn=DG Grid Membership Loader,ou=Roles,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+uid: MBSHPGRD
+userPassword: password
+
+dn: cn=incentivesUser,ou=EMPL,o=HCSC
+objectClass: HCSCLDAPUser
+objectClass: inetOrgPerson
+objectClass: ndsLoginProperties
+objectClass: organizationalPerson
+objectClass: Person
+objectClass: Top
+HCSCFwAuthorities: cn=INCENTIVES_FUNCTION_DATA_RW,ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+HCSCFwProductDN: ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+HCSCFwRoleMem: cn=DG Incentives Query,ou=Roles,ou=Framework,ou=Services,o=HCSC
+cn: incentivesUser
+userPassword: password
+
+dn: cn=userAdminClusterRWM,ou=EMPL,o=HCSC
+objectClass: HCSCLDAPUser
+objectClass: inetOrgPerson
+objectClass: ndsLoginProperties
+objectClass: organizationalPerson
+objectClass: Person
+objectClass: Top
+HCSCFwAuthorities: cn=MEMBER_ADMIN_CLUSTER_RWM,ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+HCSCFwProductDN: ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+HCSCFwRoleMem: cn=DG Grid Membership Loader,ou=Roles,ou=Framework,ou=Services,o=HCSC
+cn: userAdminClusterRWM
+userPassword: password
+
+dn: cn=pulseUser,ou=EMPL,o=HCSC
+objectClass: HCSCLDAPUser
+objectClass: inetOrgPerson
+objectClass: ndsLoginProperties
+objectClass: organizationalPerson
+objectClass: Person
+objectClass: Top
+HCSCFwAuthorities: cn=MEMBER_ADMIN_CLUSTER_R,ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+HCSCFwProductDN: ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+HCSCFwRoleMem: cn=DG Grid Pulse User,ou=Roles,ou=Framework,ou=Services,o=HCSC
+cn: pulseUser
+userPassword: password
+
+dn: cn=superUser,ou=EMPL,o=HCSC
+objectClass: HCSCLDAPUser
+objectClass: inetOrgPerson
+objectClass: ndsLoginProperties
+objectClass: organizationalPerson
+objectClass: Person
+objectClass: Top
+HCSCFwAuthorities: cn=MEMBER_ADMIN_CLUSTER_RWM,ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+HCSCFwAuthorities: cn=MEMBER_ADMIN_DATA_RWM,ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+HCSCFwRoleMem: cn=DG Grid Membership Admin,ou=Roles,ou=Framework,ou=Services,o=HCSC
+cn: superUser
+userPassword: password
+
+dn: cn=E6737010,ou=EMPL,o=HCSC
+objectClass: HCSCLDAPUser
+objectClass: inetOrgPerson
+objectClass: ndsLoginProperties
+objectClass: organizationalPerson
+objectClass: Person
+objectClass: Top
+HCSCFwAuthorities: cn=MEMBER_ADMIN_CLUSTER_RWM,ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+HCSCFwAuthorities: cn=MEMBER_ADMIN_DATA_RWM,ou=Data Grid,ou=Authorities,ou=Framework,ou=Services,o=HCSC
+HCSCFwRoleMem: cn=DG Grid Membership Admin,ou=Roles,ou=Framework,ou=Services,o=HCSC
+cn: E6737010
+userPassword: password
+

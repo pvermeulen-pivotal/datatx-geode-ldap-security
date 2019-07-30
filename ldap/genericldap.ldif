@@ -1,0 +1,91 @@
+dn: DC=customer,DC=com
+dc: customer
+objectClass: top
+objectClass: domain
+
+dn: ou=corporate,dc=customer,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: corporate
+
+dn: ou=people,ou=corporate,dc=customer,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: people
+
+dn: ou=group,ou=corporate,dc=customer,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: group
+
+dn: uid=useridRW,ou=people,ou=corporate,dc=customer,dc=com
+objectClass: top
+objectClass: inetOrgPerson
+uid: useridRW
+cn: useridRW
+sn: useridRW
+userPassword: password
+
+dn: cn=useridRO,ou=people,ou=corporate,dc=customer,dc=com
+objectClass: top
+objectClass: inetOrgPerson
+uid: useridRO
+cn: useridRO
+sn: useridRO
+userPassword: password
+
+dn: cn=LG-GEM-TEST-CUSTOMER-RW,ou=group,ou=corporate,dc=customer,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+ou: group
+uniquemember: uid=useridRW,ou=people,ou=corporate,dc=customer,dc=com
+cn: LG-GEM-TEST-CUSTOMER-RW
+
+dn: cn=LG-GEM-TEST-BOOKMASTER-RW,ou=group,ou=corporate,dc=customer,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+ou: group
+uniquemember: uid=useridRW,ou=people,ou=corporate,dc=customer,dc=com
+cn: LG-GEM-TEST-BOOKMASTER-RW
+
+dn: cn=LG-GEM-TEST-BOOKORDER-RW,ou=group,ou=corporate,dc=customer,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+ou: group
+uniquemember: uid=useridRW,ou=people,ou=corporate,dc=customer,dc=com
+cn: LG-GEM-TEST-BOOKORDER-RW
+
+dn: cn=LG-GEM-TEST-INVENTORYITEM-RW,ou=group,ou=corporate,dc=customer,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+ou: group
+uniquemember: uid=useridRW,ou=people,ou=corporate,dc=customer,dc=com
+cn: LG-GEM-TEST-INVENTORYITEM-RW
+
+dn: cn=LG-GEM-TEST-CUSTOMER-RO,ou=group,ou=corporate,dc=customer,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+ou: group
+uniquemember: uid=useridRO,ou=people,ou=corporate,dc=customer,dc=com
+cn: LG-GEM-TEST-CUSTOMER-RO
+
+dn: cn=LG-GEM-TEST-BOOKMASTER-RO,ou=group,ou=corporate,dc=customer,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+ou: group
+uniquemember: uid=useridRO,ou=people,ou=corporate,dc=customer,dc=com
+cn: LG-GEM-TEST-BOOKMASTER-RO
+
+dn: cn=LG-GEM-TEST-BOOKORDER-RO,ou=group,ou=corporate,dc=customer,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+ou: group
+uniquemember: uid=useridRO,ou=people,ou=corporate,dc=customer,dc=com
+cn: LG-GEM-TEST-BOOKORDER-RO
+
+dn: cn=LG-GEM-TEST-INVENTORYITEM-RO,ou=group,ou=corporate,dc=customer,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+ou: group
+uniquemember: uid=useridRO,ou=people,ou=corporate,dc=customer,dc=com
+cn: LG-GEM-TEST-INVENTORYITEM-RO
