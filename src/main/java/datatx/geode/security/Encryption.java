@@ -14,11 +14,9 @@ public class Encryption {
 			cipher.init(Cipher.ENCRYPT_MODE, secretKey);
 			byte[] cipherText = cipher.doFinal(plainText.getBytes("UTF8"));
 			return new String(Base64.getEncoder().encode(cipherText), "UTF-8");
-
 		} catch (Exception e) {
 			throw new PeerAuthException("Failed to process peer authorization.");
 		}
-
 	}
 
 	public static String decrypt(String encryptedText) throws PeerAuthException {
