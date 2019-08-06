@@ -3,14 +3,20 @@ The datatx-geode-ldap-security project provides user security for Geode using LD
 
 # Security Properties ##
 
-### Client Properties ###
+### Client Properties - gfsecurity.properties ###
 
 security-client-auth-init=datatx.geode.security.UserPasswordAuthInit.create   
 security-username   
 security-password   
 
-### Server ###
+### Locator/Server Properties - gfsecurity.properties ###
+
 security-manager=datatx.geode.security.LdapUserSecurityManager
+security-peer=true
+security-username=peer
+security-password=
+security-log-file=security.log 
+security-log-level=CONFIG
 security-encryption-key - This is the master key for encypting and decrypting user passwords in the event UAA/Credhub is not used and user passwords are encrypted.   
 security-enable-oaa-credhub -  A boolean (true/false) setting if UAA and Credhub services are used for security.   
 security-uaa-url - The URL of the server hosting UAA service.    
