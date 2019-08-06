@@ -8,8 +8,8 @@ The datatx-geode-ldap-security project provides user security for Geode using LD
 | Property | Value |
 | -------- | ----- |
 |security-client-auth-init|datatx.geode.security.UserPasswordAuthInit.create|
-|security-username| User Name|
-|security-password| Password |   
+|security-username| The User Name|
+|security-password| The User Password |   
 
 ### Locator/Server Properties - gfsecurity.properties ###
 
