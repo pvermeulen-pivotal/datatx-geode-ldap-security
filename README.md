@@ -1,31 +1,39 @@
-# datatx-geode-ldap-security # 
+# Datatx Geode Ldap Security # 
 The datatx-geode-ldap-security project provides user security for Geode using LDAP for user authentication and authorization. Geode authorization requires LDAP groups to be created and assigned to a user to determine the user authorization rights. 
-
-
 
 ## Security Properties ##
 
-### Client ###
-security-client-auth-init=datatx.geode.security.UserPasswordAuthInit.create
-security-username
-security-password
+#### Client Properties: gfsecurity.properties ####
 
+| Property | Value |
+| -------- | ----- |
+|security-client-auth-init|datatx.geode.security.UserPasswordAuthInit.create|
+|security-username| The User Name|
+|security-password| The User Password |   
 
-### Server ###
-security-manager=datatx.geode.security.LdapUserSecurityManager
-security-encryption-key - This is the master key for encypting and decrypting user passwords in the event UAA/Credhub is not used and user passwords are encrypted.   
-security-enable-oaa-credhub -  A boolean (true/false) setting if UAA and Credhub services are used for security.   
-security-uaa-url - The URL of the server hosting UAA service.    
-security-uaa-entity - The UAA services entities.  
-security-credhub-url - The URL of the server hosting the Credhub service.     
-security-ldap-usessl - A boolean (true/false) indicating if the LDAP connection uses SSL
-security-ldap-server - The LDAP server name and port [server:port]
-security-ldap-basedn - The base distingushed name used for user authentication and authorization.
-security-ldapSearchGroup - The LDAP object components that make up the the group's common name (cn).
-security-ldapGemfireAuthorizationQuery - LDAP query for obtaining user authorization roles.
-security-credentials-refresh - This time in minutes before cached user credentials are refreshed.    
-security-ldap-group-separator - A character used to separate the LDAP group names defined for user authorization.
-security-ldap-group-template - The template for the LDAP authorization group names used to define a user roles.   
+#### Locator/Server Properties: gfsecurity.properties ####
+
+| Property | Value |
+| -------- | ----- |
+|security-manager|datatx.geode.security.LdapUserSecurityManager|
+|security-peer|true|   
+|security-username|peer|
+|security-password|    |
+|security-log-file|security.log|
+|security-log-level|CONFIG|
+|security-encryption-key| This is the master key for encypting and decrypting user passwords in the event UAA/Credhub is not used and user passwords are encrypted|   
+|security-enable-oaa-credhub|A boolean (true/false) setting if UAA and Credhub services are used for security|
+|security-uaa-url|The URL of the server hosting UAA service|    
+|security-uaa-entity|The UAA services entities|
+|security-credhub-url|The URL of the server hosting the Credhub service|
+|security-ldap-usessl|A boolean (true/false) indicating if the LDAP connection uses SSL|
+|security-ldap-server|The LDAP server name and port [server:port]|
+|security-ldap-basedn|The base distingushed name used for user authentication and authorization|
+|security-ldapSearchGroup|The LDAP object components that make up the the group's common name (cn)|
+|security-ldapGemfireAuthorizationQuery|LDAP query for obtaining user authorization roles|
+|security-credentials-refresh|This time in minutes before cached user credentials are refreshed|
+|security-ldap-group-separator|A character used to separate the LDAP group names defined for user authorization|
+|security-ldap-group-template|The template for the LDAP authorization group names used to define a user roles|   
 
 ## Generic Unbounded Docker LDAP ##
 
@@ -48,7 +56,7 @@ A generic LDAP configuration file is provided. When the docker container is star
 
 Below is an excert of the generic-ldap.ldif configuration fuile
 
-**generic-ldap.ldif**
+#### generic-ldap.ldif ####
 
 dn: dc=customer,dc=com   
 dc: customer   
@@ -70,7 +78,7 @@ objectClass: top
 objectClass: organizationalUnit   
 ou: group   
 
-** User Definition**
+__User Definition__
 
 dn: cn=uTestClusterAll,ou=people,ou=corporate,dc=customer,dc=com   
 objectClass: top   
@@ -79,21 +87,30 @@ uid: uTestClusterAll
 cn: uTestClusterAll   
 userPassword: password   
 
-**User Group Definition**
+__User Group Definition__
 
-dn: cn=GEODE-APP1-TEST-CLUSTER-A,ou=group,ou=corporate,dc=customer,dc=com
-objectClass: groupOfUniqueNames
-objectClass: top
-ou: group
-uniquemember: cn=uTestClusterAll,ou=people,ou=corporate,dc=customer,dc=com
-cn: GEODE-APP1-TEST-CLUSTER-A
+dn: cn=GEODE-APP1-TEST-CLUSTER-A,ou=group,ou=corporate,dc=customer,dc=com   
+objectClass: top   
+objectClass: groupOfUniqueNames   
+ou: group   
+uniquemember: cn=uTestClusterAll,ou=people,ou=corporate,dc=customer,dc=com   
+cn: GEODE-APP1-TEST-CLUSTER-A   
 
 ## LDAP Viewer ##
 
-Download Apache Directory Studio from http://directory.apache.org/studio
-to view the LDAP configuration. 
+Download Apache Directory Studio from http://directory.apache.org/studio to view the LDAP configuration. 
 
 ## LDAP Authorization Groups ##
+
+Template: GEODE-APPLID-ENV-RESOURCE-PERMISSIONS-REGION   
+
+APPLID - Application Id if used [OPTIONAL]
+ENV - Environment [dev,uat, prod, etc] [OPTIONAL]
+RESOURCE - CLUSTER,DATA [REQUIRED]
+PERMISSIONS - R[read],W[write],M[manage],A[all] [REQUIRED]
+REGION - Region name [OPTIONAL]
+
+GEODE-APP1-TEST-CLUSTER-A   
 
 {APPL}-GF-{ENV}-CLSTR-ADMIN-RWM
 {APPL}-GF-{ENV}-CLSTR-ADMIN-R
