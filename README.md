@@ -78,7 +78,7 @@ objectClass: top
 objectClass: organizationalUnit   
 ou: group   
 
-** User Definition**
+**User Definition**
 
 dn: cn=uTestClusterAll,ou=people,ou=corporate,dc=customer,dc=com   
 objectClass: top   
@@ -98,8 +98,7 @@ cn: GEODE-APP1-TEST-CLUSTER-A
 
 ## LDAP Viewer ##
 
-Download Apache Directory Studio from http://directory.apache.org/studio
-to view the LDAP configuration. 
+Download Apache Directory Studio from http://directory.apache.org/studio to view the LDAP configuration. 
 
 ## LDAP Authorization Groups ##
 
