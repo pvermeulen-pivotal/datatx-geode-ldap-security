@@ -3,7 +3,7 @@ The datatx-geode-ldap-security project provides user security for Geode using LD
 
 ## Security Properties ##
 
-### Client Properties - gfsecurity.properties ###
+#### Client Properties - gfsecurity.properties ####
 
 | Property | Value |
 | -------- | ----- |
@@ -11,7 +11,7 @@ The datatx-geode-ldap-security project provides user security for Geode using LD
 |security-username| The User Name|
 |security-password| The User Password |   
 
-### Locator/Server Properties - gfsecurity.properties ###
+#### Locator/Server Properties - gfsecurity.properties ####
 
 | Property | Value |
 | -------- | ----- |
