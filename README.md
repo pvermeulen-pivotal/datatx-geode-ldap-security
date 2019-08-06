@@ -102,6 +102,10 @@ Download Apache Directory Studio from http://directory.apache.org/studio to view
 
 ## LDAP Authorization Groups ##
 
+Template: GEODE-APPLID-ENV-RESOURCE-PERMISSIONS-REGION   
+
+GEODE-APP1-TEST-CLUSTER-A   
+
 {APPL}-GF-{ENV}-CLSTR-ADMIN-RWM
 {APPL}-GF-{ENV}-CLSTR-ADMIN-R
 {APPL}-GF-{ENV}-CLSTR-ADMIN-W
