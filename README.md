@@ -87,7 +87,7 @@ uid: uTestClusterAll
 cn: uTestClusterAll   
 userPassword: password   
 
-__**User Group Definition**__
+___**User Group Definition**___
 
 dn: cn=GEODE-APP1-TEST-CLUSTER-A,ou=group,ou=corporate,dc=customer,dc=com   
 objectClass: top   
