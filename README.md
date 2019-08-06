@@ -78,7 +78,7 @@ objectClass: top
 objectClass: organizationalUnit   
 ou: group   
 
-__**User Definition**__
+__User Definition__
 
 dn: cn=uTestClusterAll,ou=people,ou=corporate,dc=customer,dc=com   
 objectClass: top   
@@ -87,7 +87,7 @@ uid: uTestClusterAll
 cn: uTestClusterAll   
 userPassword: password   
 
-___**User Group Definition**___
+__User Group Definition__
 
 dn: cn=GEODE-APP1-TEST-CLUSTER-A,ou=group,ou=corporate,dc=customer,dc=com   
 objectClass: top   
