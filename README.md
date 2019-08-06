@@ -11,25 +11,27 @@ security-password
 
 ### Locator/Server Properties - gfsecurity.properties ###
 
-security-manager=datatx.geode.security.LdapUserSecurityManager   
-security-peer=true   
-security-username=peer   
-security-password=   
-security-log-file=security.log   
-security-log-level=CONFIG   
-security-encryption-key - This is the master key for encypting and decrypting user passwords in the event UAA/Credhub is not used and user passwords are encrypted.   
-security-enable-oaa-credhub -  A boolean (true/false) setting if UAA and Credhub services are used for security.   
-security-uaa-url - The URL of the server hosting UAA service.    
-security-uaa-entity - The UAA services entities.  
-security-credhub-url - The URL of the server hosting the Credhub service.     
-security-ldap-usessl - A boolean (true/false) indicating if the LDAP connection uses SSL
-security-ldap-server - The LDAP server name and port [server:port]
-security-ldap-basedn - The base distingushed name used for user authentication and authorization.
-security-ldapSearchGroup - The LDAP object components that make up the the group's common name (cn).
-security-ldapGemfireAuthorizationQuery - LDAP query for obtaining user authorization roles.
-security-credentials-refresh - This time in minutes before cached user credentials are refreshed.    
-security-ldap-group-separator - A character used to separate the LDAP group names defined for user authorization.
-security-ldap-group-template - The template for the LDAP authorization group names used to define a user roles.   
+| Property | Value |
+| -------- | ----- |
+|security-manager|datatx.geode.security.LdapUserSecurityManager|
+|security-peer|true|   
+|security-username|peer|
+|security-password|    |
+|security-log-file|security.log|
+|security-log-level|CONFIG|
+|security-encryption-key| This is the master key for encypting and decrypting user passwords in the event UAA/Credhub is not used and user passwords are encrypted|   
+|security-enable-oaa-credhub|A boolean (true/false) setting if UAA and Credhub services are used for security|
+|security-uaa-url|The URL of the server hosting UAA service|    
+|security-uaa-entity|The UAA services entities|
+|security-credhub-url|The URL of the server hosting the Credhub service|
+|security-ldap-usessl|A boolean (true/false) indicating if the LDAP connection uses SSL|
+|security-ldap-server|The LDAP server name and port [server:port]|
+|security-ldap-basedn|The base distingushed name used for user authentication and authorization|
+|security-ldapSearchGroup|The LDAP object components that make up the the group's common name (cn)|
+|security-ldapGemfireAuthorizationQuery|LDAP query for obtaining user authorization roles|
+|security-credentials-refresh|This time in minutes before cached user credentials are refreshed|
+|security-ldap-group-separator|A character used to separate the LDAP group names defined for user authorization|
+|security-ldap-group-template|The template for the LDAP authorization group names used to define a user roles|   
 
 ## Generic Unbounded Docker LDAP ##
 
