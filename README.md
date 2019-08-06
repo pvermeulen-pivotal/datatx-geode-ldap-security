@@ -89,12 +89,12 @@ userPassword: password
 
 **User Group Definition**
 
-dn: cn=GEODE-APP1-TEST-CLUSTER-A,ou=group,ou=corporate,dc=customer,dc=com
-objectClass: groupOfUniqueNames
-objectClass: top
-ou: group
-uniquemember: cn=uTestClusterAll,ou=people,ou=corporate,dc=customer,dc=com
-cn: GEODE-APP1-TEST-CLUSTER-A
+dn: cn=GEODE-APP1-TEST-CLUSTER-A,ou=group,ou=corporate,dc=customer,dc=com   
+objectClass: groupOfUniqueNames   
+objectClass: top   
+ou: group   
+uniquemember: cn=uTestClusterAll,ou=people,ou=corporate,dc=customer,dc=com   
+cn: GEODE-APP1-TEST-CLUSTER-A   
 
 ## LDAP Viewer ##
 
