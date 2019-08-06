@@ -56,7 +56,7 @@ A generic LDAP configuration file is provided. When the docker container is star
 
 Below is an excert of the generic-ldap.ldif configuration fuile
 
-**generic-ldap.ldif**
+#### generic-ldap.ldif ####
 
 dn: dc=customer,dc=com   
 dc: customer   
