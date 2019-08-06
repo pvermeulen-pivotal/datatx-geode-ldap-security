@@ -1,0 +1,131 @@
+dn: dc=customer,dc=com
+dc: customer
+objectClass: top
+objectClass: domain
+
+dn: ou=corporate,dc=customer,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: corporate
+
+dn: ou=people,ou=corporate,dc=customer,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: people
+
+dn: ou=group,ou=corporate,dc=customer,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: group
+
+dn: cn=uTestClusterAll,ou=people,ou=corporate,dc=customer,dc=com
+objectClass: top
+objectClass: inetOrgPerson
+uid: uTestClusterAll
+cn: uTestClusterAll
+userPassword: password
+
+dn: cn=uTestClusterManage,ou=people,ou=corporate,dc=customer,dc=com
+objectClass: top
+objectClass: inetOrgPerson
+uid: uTestClusterManage
+cn: uTestClusterManage
+userPassword: password
+
+dn: cn=uTestDataAll,ou=people,ou=corporate,dc=customer,dc=com
+objectClass: top
+objectClass: inetOrgPerson
+uid: uTestDataAll
+cn: uTestDataAll
+userPassword: password
+
+dn: cn=uTestDataReadWrite,ou=people,ou=corporate,dc=customer,dc=com
+objectClass: top
+objectClass: inetOrgPerson
+uid: uTestDataReadWrite
+cn: uTestDataReadWrite
+userPassword: password
+
+dn: cn=uProdClusterAll,ou=people,ou=corporate,dc=customer,dc=com
+objectClass: top
+objectClass: inetOrgPerson
+uid: uProdClusterAll
+cn: uProdClusterAll
+userPassword: password
+
+dn: cn=uProdClusterManage,ou=people,ou=corporate,dc=customer,dc=com
+objectClass: top
+objectClass: inetOrgPerson
+uid: uProdClusterManage
+cn: uProdClusterManage
+userPassword: password
+
+dn: cn=uProdDataAll,ou=people,ou=corporate,dc=customer,dc=com
+objectClass: top
+objectClass: inetOrgPerson
+uid: uProdDataAll
+cn: uProdDataAll
+userPassword: password
+
+dn: cn=uProdDataReadWrite,ou=people,ou=corporate,dc=customer,dc=com
+objectClass: top
+objectClass: inetOrgPerson
+uid: uProdDataReadWrite
+cn: uProdDataReadWrite
+userPassword: password
+
+dn: cn=GEODE-APP1-TEST-CLUSTER-A,ou=group,ou=corporate,dc=customer,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+ou: group
+uniquemember: cn=uTestClusterAll,ou=people,ou=corporate,dc=customer,dc=com
+cn: GEODE-APP1-TEST-CLUSTER-A
+
+dn: cn=GEODE-APP1-TEST-DATA-A,ou=group,ou=corporate,dc=customer,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+ou: group
+uniquemember: cn=uTestDataAll,ou=people,ou=corporate,dc=customer,dc=com
+cn: GEODE-APP1-TEST-DATA-A
+
+dn: cn=GEODE-APP1-TEST-CLUSTER-M,ou=group,ou=corporate,dc=customer,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+ou: group
+uniquemember: uid=uTestClusterManage,ou=people,ou=corporate,dc=customer,dc=com
+cn: GEODE-APP1-TEST-CLUSTER-M
+
+dn: cn=GEODE-APP1-TEST-DATA-RW,ou=group,ou=corporate,dc=customer,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+ou: group
+uniquemember: cn=uTestDataReadWrite,ou=people,ou=corporate,dc=customer,dc=com
+cn: GEODE-APP1-TEST-DATA-RW
+
+dn: cn=GEODE-APP1-PROD-CLUSTER-A,ou=group,ou=corporate,dc=customer,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+ou: group
+uniquemember: cn=uProdClusterAll,ou=people,ou=corporate,dc=customer,dc=com
+cn: GEODE-APP1-PROD-CLUSTER-A
+
+dn: cn=GEODE-APP1-PROD-DATA-A,ou=group,ou=corporate,dc=customer,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+ou: group
+uniquemember: cn=uProdDataAll,ou=people,ou=corporate,dc=customer,dc=com
+cn: GEODE-APP1-PROD-DATA-A
+
+dn: cn=GEODE-APP1-PROD-CLUSTER-M,ou=group,ou=corporate,dc=customer,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+ou: group
+uniquemember: cn=uProdClusterManage,ou=people,ou=corporate,dc=customer,dc=com
+cn: GEODE-APP1-PROD-CLUSTER-M
+
+dn: cn=GEODE-APP1-PROD-DATA-RW,ou=group,ou=corporate,dc=customer,dc=com
+objectClass: groupOfUniqueNames
+objectClass: top
+ou: group
+uniquemember: cn=uProdDataReadWrite,ou=people,ou=corporate,dc=customer,dc=com
+cn: GEODE-APP1-PROD-DATA-RW

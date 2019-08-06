@@ -17,11 +17,11 @@ ENV UNBOUNDID_VERSION unboundid-ldapsdk-3.1.0-se
 
 ADD https://docs.ldap.com/ldap-sdk/files/${UNBOUNDID_VERSION}.zip unboundid-ldapsdk-se.zip
 RUN mkdir -p ${UNBOUNDID_HOME}
-ADD ildap.ldif /opt/unboundid-ldap/ldap.ldif
+ADD generic-ldap.ldif /opt/unboundid-ldap/ldap.ldif
 RUN unzip unboundid-ldapsdk-se.zip -d ${UNBOUNDID_HOME}
 
 ENTRYPOINT ./${UNBOUNDID_HOME}/${UNBOUNDID_VERSION}/tools/in-memory-directory-server \
-    --baseDN 'o=INTLDAP' \
+    --baseDN 'DC=customer,DC=com' \
     --port 389 \
     --ldifFile /opt/unboundid-ldap/ldap.ldif \
     --accessLogToStandardOut 

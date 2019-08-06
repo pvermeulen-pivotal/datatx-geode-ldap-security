@@ -13,6 +13,8 @@ public class UserPasswordAuthInit implements AuthInitialize {
 
 	public static final String PASSWORD = "security-password";
 
+	public static final String PEER = "security-peer";
+
 	public static AuthInitialize create() {
 		return new UserPasswordAuthInit();
 	}
@@ -26,8 +28,12 @@ public class UserPasswordAuthInit implements AuthInitialize {
 
 	public Properties getCredentials(Properties props, DistributedMember server, boolean isPeer)
 			throws AuthenticationFailedException {
-
+		
 		Properties newProps = new Properties();
+		if (isPeer) {
+			newProps.put(PEER, "true");
+		}
+		
 		String userName = props.getProperty(USER_NAME);
 		if (userName == null) {
 			throw new AuthenticationFailedException(
