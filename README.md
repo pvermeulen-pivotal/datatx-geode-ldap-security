@@ -104,6 +104,12 @@ Download Apache Directory Studio from http://directory.apache.org/studio to view
 
 Template: GEODE-APPLID-ENV-RESOURCE-PERMISSIONS-REGION   
 
+APPLID - Application Id if used [OPTIONAL]
+ENV - Environment [dev,uat, prod, etc] [OPTIONAL]
+RESOURCE - CLUSTER,DATA [REQUIRED]
+PERMISSIONS - R[read],W[write],M[manage],A[all] [REQUIRED]
+REGION - Region name [OPTIONAL]
+
 GEODE-APP1-TEST-CLUSTER-A   
 
 {APPL}-GF-{ENV}-CLSTR-ADMIN-RWM
