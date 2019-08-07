@@ -111,13 +111,22 @@ Template: GEODE-APPLID-ENV-RESOURCE-PERMISSIONS-REGION
 
 The LDAP group template property defines the template that will be used for the user's LDAP group to support Geode authorizations. A template can be of any size and layout but each section of the template must be separated by the value defined in the security-ldap-separator property. The template can support five (5) defined fields along with other constant values. The five fields are listed below and the only required fields need in a template is the RESOURCE and PERMISSION fields.
 
-* APPLID - Application Id if used [OPTIONAL]   
-* ENV - Environment [dev,uat, prod, etc] [OPTIONAL]   
-* RESOURCE - CLUSTER,DATA [REQUIRED]   
-* PERMISSIONS - R[read],W[write],M[manage],A[all] [REQUIRED]   
-* REGION - Region name [OPTIONAL]   
+| Field Name | Description | Required |
+| ---------- | ----------- | -------- |
+| APPLID | Application Id |  |
+| ENV | Environment [dev,uat, prod, etc] |  |   
+| RESOURCE | CLUSTER,DATA | Yes |
+| PERMISSIONS | R[read],W[write],M[manage],A[all] | Yesy |
+| REGION | Region name |   |
 
-GEODE-APP1-TEST-CLUSTER-A   
+**Examples**
+
+The following is an LDAP group name for authorizations that use an *-* separator the LDAP template components.
+GEODE-APP1-TEST-CLUSTER-A and the template for the LDAP group would be GEODE-APPID-ENV-RESOURCE-PERMISSIONS.
+
+The following is an LDAP group name for authorizations that use an *-* separator the LDAP template components.
+GEODE-APP1-TEST-DATA-RW-TestRegion and the template for the LDAP group would be GEODE-APPID-ENV-RESOURCE-PERMISSIONS-REGION.
+
 
 {APPL}-GF-{ENV}-CLSTR-ADMIN-RWM
 {APPL}-GF-{ENV}-CLSTR-ADMIN-R
