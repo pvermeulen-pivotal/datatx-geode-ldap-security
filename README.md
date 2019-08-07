@@ -184,23 +184,23 @@ After downloading the datatx-geode-ldap-security Github project, navigate to the
 
 The docker-compose.yml file is used to create and run two Docker containers, pcfseceng/uaa and ampersand8/credhub.   
 
-After downloading the datatx-geode-ldap-security Github project, navigate to the location of where the Git repository was downloaded and go to directory **credhub-uaa/docker-compose** in the datatx-geode-ldap-security project and run the Docker command below. The docker-compose up command will build the docker images and then start the containers.
+After downloading the datatx-geode-ldap-security Github project, navigate to the location of where the Git repository was downloaded and go to directory **credhub-uaa/docker-compose** in the datatx-geode-ldap-security project and run the Docker command below. The docker-compose up command will build the docker images and then start the containers.   
 
-***docker-compose up***
+***docker-compose up***   
 
 After the Credhub service has started, users will need to be added to the Credhub service. Run the following commands which first will retreive the token from the UAA service and then call Credhub service to add the users with the UAA token.   
 
-***Get UAA Token***
-token=$(curl -q -s -XPOST -H"Application/json" --data "client_id=credhub_client&client_secret=secret&client_id=credhub_client&grant_type=client_credentials&response_type=token" http://localhost:8081/uaa/oauth/token | jq -r .access_token)
+***Get UAA Token***   
+token=$(curl -q -s -XPOST -H"Application/json" --data "client_id=credhub_client&client_secret=secret&client_id=credhub_client&grant_type=client_credentials&response_type=token" http://localhost:8081/uaa/oauth/token | jq -r .access_token)   
 
-***Add User uTestClusterAll***
-curl -k -XPUT https://localhost:9000/api/v1/data -H "content-type: application/json" -H "authorization: bearer ${token}" -d '{"name": "/uTestClusterAll","type":"json","value": {"password":"password"}}' | jq .
+***Add User uTestClusterAll***   
+curl -k -XPUT https://localhost:9000/api/v1/data -H "content-type: application/json" -H "authorization: bearer ${token}" -d '{"name": "/uTestClusterAll","type":"json","value": {"password":"password"}}' | jq .   
 
-***Add User uTestClusterManage***
-curl -k -XPUT https://localhost:9000/api/v1/data -H "content-type: application/json" -H "authorization: bearer ${token}" -d '{"name": "/uTestClusterManage","type":"json","value": {"password":"password"}}' | jq .
+***Add User uTestClusterManage***   
+curl -k -XPUT https://localhost:9000/api/v1/data -H "content-type: application/json" -H "authorization: bearer ${token}" -d '{"name": "/uTestClusterManage","type":"json","value": {"password":"password"}}' | jq .   
 
-***Add User uTestDataAll***
-curl -k -XPUT https://localhost:9000/api/v1/data -H "content-type: application/json" -H "authorization: bearer ${token}" -d '{"name": "/uTestDataAll","type":"json","value": {"password":"password"}}' | jq .
+***Add User uTestDataAll***   
+curl -k -XPUT https://localhost:9000/api/v1/data -H "content-type: application/json" -H "authorization: bearer ${token}" -d '{"name": "/uTestDataAll","type":"json","value": {"password":"password"}}' | jq .   
 
-***Add User uTestDataReadWrite***
-curl -k -XPUT https://localhost:9000/api/v1/data -H "content-type: application/json" -H "authorization: bearer ${token}" -d '{"name": "/uTestDataReadWrite","type":"json","value": {"password":"password"}}' | jq .
+***Add User uTestDataReadWrite***   
+curl -k -XPUT https://localhost:9000/api/v1/data -H "content-type: application/json" -H "authorization: bearer ${token}" -d '{"name": "/uTestDataReadWrite","type":"json","value": {"password":"password"}}' | jq .   
