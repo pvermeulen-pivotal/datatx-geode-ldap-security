@@ -1,9 +1,11 @@
 # Geode LDAP Security # 
 The datatx-geode-ldap-security project provides user security for Geode using LDAP for user authentication and authorization. Geode authorization requires LDAP groups to be created and assigned to a user to determine the user authorization rights. 
 
-## Geode LDAP Security Overview ##
+### Geode LDAP Security Overview ###
 
-## Security Properties ##
+![Geode LDAP Security Overview](https://github.com/pvermeulen-pivotal/datatx-geode-ldap-security/blob/master/Overview.png)
+
+### Security Properties ###
 
 #### Client Properties: gfsecurity.properties ####
 
