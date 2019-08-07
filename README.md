@@ -39,7 +39,7 @@ The datatx-geode-ldap-security project provides user security for Geode using LD
 |security-ldap-group-separator|A character used to separate the LDAP group names defined for user authorization|
 |security-ldap-group-template|The template for the LDAP authorization group names used to define a user roles|   
 
-## Generic Unbounded Docker LDAP ##
+### Generic Unbounded Docker LDAP ###
 
 After downloading the Github project, navigate to the location of where the git repository was downloaded and go to directory **ldap** in the datatx-geode-ldap-security project.
 
@@ -55,7 +55,7 @@ docker run -t -d -p 389:389  ldap:latest
 
 docker exec -it ed92769117e8  /bin/bash
 
-## LDAP Configuration ##
+### LDAP Configuration ###
 A generic LDAP configuration file is provided. When the docker container is started, the generic-ldap.ldif file is copied to the container in the /opt/unboundid-ldap/ directory.
 
 Below is an excert of the generic-ldap.ldif configuration fuile
@@ -82,7 +82,7 @@ objectClass: top
 objectClass: organizationalUnit   
 ou: group   
 
-__User Definition__
+__**User Definition**__
 
 dn: cn=uTestClusterAll,ou=people,ou=corporate,dc=customer,dc=com   
 objectClass: top   
@@ -91,7 +91,7 @@ uid: uTestClusterAll
 cn: uTestClusterAll   
 userPassword: password   
 
-__User Group Definition__
+__**User Group Definition**__
 
 dn: cn=GEODE-APP1-TEST-CLUSTER-A,ou=group,ou=corporate,dc=customer,dc=com   
 objectClass: top   
@@ -100,11 +100,11 @@ ou: group
 uniquemember: cn=uTestClusterAll,ou=people,ou=corporate,dc=customer,dc=com   
 cn: GEODE-APP1-TEST-CLUSTER-A   
 
-## LDAP Viewer ##
+### LDAP Viewer ###
 
 Download Apache Directory Studio from http://directory.apache.org/studio to view the LDAP configuration. 
 
-## LDAP Authorization Groups ##
+### LDAP Authorization Groups ###
 
 security-ldap-group-template   
 Template: GEODE-APPLID-ENV-RESOURCE-PERMISSIONS-REGION   
@@ -119,7 +119,7 @@ The LDAP group template property defines the template that will be used for the 
 | PERMISSIONS | R[read],W[write],M[manage],A[all] | Yesy |
 | REGION | Region name |   |
 
-**Examples**
+__**Examples**__
 
 The following is an LDAP group name for authorizations that use an *-* separator the LDAP template components.
 GEODE-APP1-TEST-CLUSTER-A and the template for the LDAP group would be GEODE-APPID-ENV-RESOURCE-PERMISSIONS.
@@ -127,30 +127,13 @@ GEODE-APP1-TEST-CLUSTER-A and the template for the LDAP group would be GEODE-APP
 The following is an LDAP group name for authorizations that use an *-* separator the LDAP template components.
 GEODE-APP1-TEST-DATA-RW-TestRegion and the template for the LDAP group would be GEODE-APPID-ENV-RESOURCE-PERMISSIONS-REGION.
 
-
-{APPL}-GF-{ENV}-CLSTR-ADMIN-RWM
-{APPL}-GF-{ENV}-CLSTR-ADMIN-R
-{APPL}-GF-{ENV}-CLSTR-ADMIN-W
-{APPL}-GF-{ENV}-CLSTR-ADMIN-M
-
-{APPL}-GF-{ENV}-DATA-ADMIN-M
-
-{APPL}-GF-{ENV}-CLSTR-USER-RWM
-{APPL}-GF-{ENV}-CLSTR-USER-R
-{APPL}-GF-{ENV}-CLSTR-USER-W
-{APPL}-GF-{ENV}-CLSTR-USER-M
-
-{APPL}-GF-{ENV}-DATA-USER-RW-{REGION}
-{APPL}-GF-{ENV}-DATA-USER-R-{REGION}
-{APPL}-GF-{ENV}-DATA-USER-W-{REGION}
-
-## Scripts ##
+### Scripts ###
 
 decrypt.sh   
 encrypt.sh   
 
 
-## UAA/Credhub ##
+### UAA/Credhub ###
 
 Certificates
 
