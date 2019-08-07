@@ -32,8 +32,11 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.Principal;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
@@ -55,6 +58,7 @@ public class LdapUserSecurityManager implements SecurityManager {
 	public static final String ENABLE_UAA_CREDHUB = "security-enable-uaa-credhub";
 	public static final String ENCRYPTION_KEY = "security-encryption-master";
 	public static final String SECURITY_PEER = "security-peer";
+	public static final String FILE = "file:";
 
 	private static final String APPLID = "APPLID";
 	private static final String ENV = "ENV";
@@ -173,7 +177,7 @@ public class LdapUserSecurityManager implements SecurityManager {
 			peer = Boolean.valueOf(str);
 		}
 
-		encryptionKey = securityProperties.getProperty(ENCRYPTION_KEY);
+		encryptionKey = getKey(securityProperties.getProperty(ENCRYPTION_KEY));
 
 		String template = securityProperties.getProperty(LDAP_GROUP_TEMPLATE);
 		if (template == null || template.length() == 0) {
@@ -181,6 +185,29 @@ public class LdapUserSecurityManager implements SecurityManager {
 					"LdapUserAuthenticator: LDAP Group Template property [" + LDAP_GROUP_TEMPLATE + "] not specified");
 		}
 		parseTemplate(template);
+	}
+
+	private String getKey(String key) throws AuthenticationFailedException {
+		if (key != null && key.length() > 0) {
+			if (key.toLowerCase().startsWith(FILE)) {
+				StringBuilder sb = new StringBuilder();
+				try {
+					BufferedReader br = Files.newBufferedReader(Paths.get(key.substring(FILE.length(), key.length())));
+					String line;
+					while ((line = br.readLine()) != null) {
+						sb.append(line);
+					}
+					return sb.toString();
+				} catch (IOException e) {
+					throw new AuthenticationFailedException("Failed to get encryption master key from " + key);
+				}
+			} else {
+				return key;
+			}
+		} else {
+			LOG.warn("No encryption master key found.");
+		}
+		return null;
 	}
 
 	private void parseTemplate(String template) {
@@ -399,7 +426,7 @@ public class LdapUserSecurityManager implements SecurityManager {
 				}
 			} else {
 				throw new AuthenticationFailedException(
-						"LdapUserAuthenticator: encrypted password but no encryption key provided");
+						"LdapUserAuthenticator: encrypted password but no master key provided");
 			}
 		} else {
 			env.put(Context.SECURITY_CREDENTIALS, passwd);
