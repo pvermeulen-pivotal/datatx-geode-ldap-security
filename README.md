@@ -63,7 +63,10 @@ When a user is being authenticated by LdapUserSecurityManager, it checks to see 
 |security-ldap-group-separator|A character used to separate the LDAP group names defined for user authorization|
 |security-ldap-group-template|The template for the LDAP authorization group names used to define a user roles|   
 
-### Generic Unbounded Docker LDAP ###
+### Unbounded Docker LDAP ###
+
+**Note**
+***The Unbounded Docker LDAP is used for testing only and should never be used in production***
 
 After downloading the datatx-geode-ldap-security Github project, navigate to the location of where the Git repository was downloaded and go to directory **ldap** in the datatx-geode-ldap-security project.
 
@@ -191,6 +194,9 @@ Credhub uses TLS encryption and the client accessing Credhub must have a trust s
 After downloading the datatx-geode-ldap-security Github project, navigate to the location of where the Git repository was downloaded and go to directory **credhub-uaa** in the datatx-geode-ldap-security project.
 
 #### Start UAA/Credhub Services ####    
+
+**Note**
+***The UAA/Credhub Services are used for testing only and should never be used in production***
 
 The docker-compose.yml file is used to create and run two Docker containers, pcfseceng/uaa and ampersand8/credhub.   
 
