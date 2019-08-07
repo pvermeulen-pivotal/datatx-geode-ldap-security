@@ -15,8 +15,12 @@ public class Encryption {
 	private static final String ENCRYPTION = "AES";
 
 	public static String encrypt(String plainText) throws EncryptionException {
+		byte[] key = getKey();
+		return encrypt(plainText, key);
+	}
+
+	public static String encrypt(String plainText, byte[] key) throws EncryptionException {
 		try {
-			byte[] key = getKey();
 			Cipher cipher = Cipher.getInstance(CIPHER);
 			SecretKeySpec secretKey = new SecretKeySpec(key, ENCRYPTION);
 			cipher.init(Cipher.ENCRYPT_MODE, secretKey);
@@ -28,15 +32,19 @@ public class Encryption {
 	}
 
 	public static String decrypt(String encryptedText) throws EncryptionException {
+		byte[] key = getKey();
+		return encrypt(encryptedText, key);
+	}
+
+	public static String decrypt(String encryptedText, byte[] key) throws EncryptionException {
 		try {
-			byte[] key = getKey();
 			Cipher cipher = Cipher.getInstance(CIPHER);
 			SecretKeySpec secretKey = new SecretKeySpec(key, ENCRYPTION);
 			cipher.init(Cipher.DECRYPT_MODE, secretKey);
 			byte[] cipherText = Base64.getDecoder().decode(encryptedText.getBytes(StandardCharsets.UTF_8));
 			return new String(cipher.doFinal(cipherText), StandardCharsets.UTF_8);
 		} catch (Exception e) {
-			throw new EncryptionException("Failed to decrypt password.");
+			throw new EncryptionException("Failed to decrypt password. Exception:" + e.getMessage());
 		}
 	}
 
@@ -53,7 +61,7 @@ public class Encryption {
 					}
 					return sb.toString().getBytes();
 				} catch (IOException e) {
-					throw new EncryptionException("Failed to get encryption master key.");
+					throw new EncryptionException("Failed to get encryption master key. Exception: " + e.getMessage());
 				}
 			} else {
 				return str.getBytes();
@@ -72,16 +80,18 @@ public class Encryption {
 	}
 
 	public static void main(String[] args) throws Exception {
+		String passwd;
 		if (args != null && args.length == 2) {
 			if (args[0].equalsIgnoreCase("ENCRYPT")) {
-				encrypt(args[1]);
+				passwd = encrypt(args[1]);
 			} else if (args[0].equalsIgnoreCase("DECRYPT")) {
-				decrypt(args[1]);
+				passwd = decrypt(args[1]);
 			} else {
 				throw new RuntimeException("Invalid command; Valid commands are encrypt and decrypt");
 			}
 		} else {
 			throw new RuntimeException("Invalid arguments; Valid arguments encrypt password or decrypt password");
 		}
+		System.out.println(passwd);
 	}
 }
