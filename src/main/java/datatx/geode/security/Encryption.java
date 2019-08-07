@@ -1,34 +1,65 @@
 package datatx.geode.security;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
 public class Encryption {
+	private static final String MASTER = "security-encryption-master";
+	private static final String CIPHER = "AES/ECB/PKCS5Padding";
+	private static final String ENCRYPTION = "AES";
 
 	public static String encrypt(String plainText) throws EncryptionException {
 		try {
-			byte[] key = System.getProperty("key").getBytes();
-			Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-			SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
+			byte[] key = getKey();
+			Cipher cipher = Cipher.getInstance(CIPHER);
+			SecretKeySpec secretKey = new SecretKeySpec(key, ENCRYPTION);
 			cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-			byte[] cipherText = cipher.doFinal(plainText.getBytes("UTF8"));
-			return new String(Base64.getEncoder().encode(cipherText), "UTF-8");
+			byte[] cipherText = cipher.doFinal(plainText.getBytes(StandardCharsets.UTF_8));
+			return new String(Base64.getEncoder().encode(cipherText), StandardCharsets.UTF_8);
 		} catch (Exception e) {
-			throw new EncryptionException("Failed to process peer authorization.");
+			throw new EncryptionException("Failed to encrypt password.");
 		}
 	}
 
 	public static String decrypt(String encryptedText) throws EncryptionException {
 		try {
-			byte[] key = System.getProperty("key").getBytes();
-			Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
-			SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
+			byte[] key = getKey();
+			Cipher cipher = Cipher.getInstance(CIPHER);
+			SecretKeySpec secretKey = new SecretKeySpec(key, ENCRYPTION);
 			cipher.init(Cipher.DECRYPT_MODE, secretKey);
-			byte[] cipherText = Base64.getDecoder().decode(encryptedText.getBytes("UTF8"));
-			return new String(cipher.doFinal(cipherText), "UTF-8");
+			byte[] cipherText = Base64.getDecoder().decode(encryptedText.getBytes(StandardCharsets.UTF_8));
+			return new String(cipher.doFinal(cipherText), StandardCharsets.UTF_8);
 		} catch (Exception e) {
-			throw new EncryptionException("Failed to process peer authorization.");
+			throw new EncryptionException("Failed to decrypt password.");
+		}
+	}
+
+	private static byte[] getKey() throws EncryptionException {
+		String str = System.getProperty(MASTER);
+		if (str != null && str.length() > 0) {
+			if (str.startsWith("file:")) {
+				StringBuilder sb = new StringBuilder();
+				try {
+					BufferedReader br = Files.newBufferedReader(Paths.get(str.substring(5, str.length())));
+					String line;
+					while ((line = br.readLine()) != null) {
+						sb.append(line);
+					}
+					return sb.toString().getBytes();
+				} catch (IOException e) {
+					throw new EncryptionException("Failed to get encryption master key.");
+				}
+			} else {
+				return str.getBytes();
+			}
+		} else {
+			throw new EncryptionException("No encryption master key found.");
 		}
 	}
 

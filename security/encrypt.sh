@@ -1,2 +1,2 @@
 !#/bin/bash
-java -cp ./ldap/lib/* -Dkey=testkey datatx.geode.security.Encryption encrypt $*
+java -cp ./security/lib/* -Dsecurity-encryption-master=$1 datatx.geode.security.Encryption encrypt $2

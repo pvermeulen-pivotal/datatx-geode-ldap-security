@@ -53,7 +53,7 @@ public class LdapUserSecurityManager implements SecurityManager {
 	public static final String UAA_ENTITY = "security-uaa-entity";
 	public static final String CREDHUB_URL = "security-credhub-url";
 	public static final String ENABLE_UAA_CREDHUB = "security-enable-uaa-credhub";
-	public static final String ENCRYPTION_KEY = "security-encryption-key";
+	public static final String ENCRYPTION_KEY = "security-encryption-master";
 	public static final String SECURITY_PEER = "security-peer";
 
 	private static final String APPLID = "APPLID";
@@ -617,6 +617,7 @@ public class LdapUserSecurityManager implements SecurityManager {
 			return roles;
 		}
 
+		@SuppressWarnings("unused")
 		public static final class Builder {
 			private String name;
 			private String password;
