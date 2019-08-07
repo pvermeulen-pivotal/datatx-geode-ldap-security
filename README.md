@@ -106,13 +106,16 @@ Download Apache Directory Studio from http://directory.apache.org/studio to view
 
 ## LDAP Authorization Groups ##
 
+security-ldap-group-template   
 Template: GEODE-APPLID-ENV-RESOURCE-PERMISSIONS-REGION   
 
-APPLID - Application Id if used [OPTIONAL]
-ENV - Environment [dev,uat, prod, etc] [OPTIONAL]
-RESOURCE - CLUSTER,DATA [REQUIRED]
-PERMISSIONS - R[read],W[write],M[manage],A[all] [REQUIRED]
-REGION - Region name [OPTIONAL]
+The LDAP group template property defines the template that will be used for the user's LDAP group to support Geode authorizations. A template can be of any size and layout but each section of the template must be separated by the value defined in the security-ldap-separator property. The template can support five (5) defined fields along with other constant values. The five fields are listed below and the only required fields need in a template is the RESOURCE and PERMISSION fields.
+
+..* APPLID - Application Id if used [OPTIONAL]
+..* ENV - Environment [dev,uat, prod, etc] [OPTIONAL]
+..* RESOURCE - CLUSTER,DATA [REQUIRED]
+..* PERMISSIONS - R[read],W[write],M[manage],A[all] [REQUIRED]
+..* REGION - Region name [OPTIONAL]
 
 GEODE-APP1-TEST-CLUSTER-A   
 
