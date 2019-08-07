@@ -188,21 +188,19 @@ Authentication via UAA is performed directly with the trusted UAA server. When s
 
 CredHub manages credentials like passwords, users, certificates, certificate authorities, ssh keys, rsa keys and arbitrary values (strings and JSON blobs). 
 
-Credhub uses TLS encryption, so clients accessing Credhub must have a trust store containing the Credhub TLS certificate for the session to be authenticated. The LdapUserSecurityManager is configured to trust any server's certificate so a trust store is not required. This behavior is not configurable so any behavioral changes will require code change. 
-
-After downloading the datatx-geode-ldap-security Github project, navigate to the location of where the Git repository was downloaded and go to directory **credhub-uaa** in the datatx-geode-ldap-security project.
+Credhub uses TLS encryption, so clients accessing Credhub must have a trust store containing the Credhub TLS certificate for the session to be authenticated. The LdapUserSecurityManager is configured to trust any server's certificate so a trust store is not required. This behavior is not configurable so any behavioral changes will require code changes. 
 
 #### Start UAA/Credhub Services ####    
+
+After downloading the datatx-geode-ldap-security Github project, navigate to the location of where the Git repository was downloaded and go to directory **credhub-uaa/docker-compose** in the datatx-geode-ldap-security project and run the Docker command below. The docker-compose up command will build the docker images and then start the containers.   
 
 **Note:** ***The UAA/Credhub Services are used for testing only and should never be used in production***   
 
 The docker-compose.yml file is used to create and run two Docker containers, pcfseceng/uaa and ampersand8/credhub.   
 
-After downloading the datatx-geode-ldap-security Github project, navigate to the location of where the Git repository was downloaded and go to directory **credhub-uaa/docker-compose** in the datatx-geode-ldap-security project and run the Docker command below. The docker-compose up command will build the docker images and then start the containers.   
-
 ***docker-compose up***   
 
-After the Credhub service has started, users will need to be added to the Credhub service. Run the following commands which first will retreive the token from the UAA service and then call Credhub service to add the users with the UAA token.   
+After the Credhub service has started, users will need to be added to the Credhub service. Run the following commands, the first command will retreive the token from the UAA service and the remaining commands call Credhub service to add the users with the UAA token.   
 
 ***Get UAA Token***   
 token=$(curl -q -s -XPOST -H"Application/json" --data "client_id=credhub_client&client_secret=secret&client_id=credhub_client&grant_type=client_credentials&response_type=token" http://localhost:8081/uaa/oauth/token | jq -r .access_token)   
