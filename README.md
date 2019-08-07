@@ -44,8 +44,11 @@ The Geode LDAP Security project provides user security for Geode using LDAP for 
 |security-ldap-usessl|A boolean (true/false) indicating if the LDAP connection uses SSL|
 |security-ldap-server|The LDAP server name and port [server:port]|
 |security-ldap-basedn|The base distinguished name used for user authentication and authorization|
+|                    | Example: ou=people,ou=corporate,DC=customer,DC=com |
 |security-ldapSearchGroup|The LDAP object components that make up the group's common name (cn)|
+|                    | Example: ou=group,ou=corporate,dc=customer,dc=com |
 |security-ldapGemfireAuthorizationQuery|LDAP query for obtaining user authorization roles|
+|                    | Example: (&(objectclass=groupOfUniqueNames)(uniquemember=cn={0},ou=people,ou=corporate,dc=customer,dc=com)) |
 |security-credentials-refresh|This time in minutes before cached user credentials are refreshed|
 |security-ldap-group-separator|A character used to separate the LDAP group names defined for user authorization|
 |security-ldap-group-template|The template for the LDAP authorization group names used to define a user roles|   
