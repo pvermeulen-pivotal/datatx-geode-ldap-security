@@ -47,7 +47,7 @@ After downloading the datatx-geode-ldap-security Github project, navigate to the
 
 **Build the Docker Image**
 
-This command creates a Docker image with a tag of ldap:latest and uses the Docker file in datatx-geode-ldap-security/ldap directory.   
+This command creates a Docker image with a tag of ldap:latest and uses the Docker file in datatx-geode-ldap-security/ldap directoryto create the Docker image.   
 *docker build -t "ldap:latest" -f Dockerfile .*
 
 **Start the Docker Image**
@@ -107,19 +107,27 @@ cn: GEODE-APP1-TEST-CLUSTER-A
 
 ### LDAP Viewer ###
 
-Download Apache Directory Studio from http://directory.apache.org/studio to view the LDAP configuration. 
+To view the LDAP configuration download the Apache Directory Studio from http://directory.apache.org/studio. 
 
 ### LDAP Authorization Groups ###
 
-security-ldap-group-template   
-Template: GEODE-APPLID-ENV-RESOURCE-PERMISSIONS-REGION   
+LDAP authorization groups are LDAP group objects that are used to define the Geode authorization roles. One or more LDAP groups can be assigned to a user to create the users Geode authorization. After deciding on how the LDAP group names will be constructed in LDAP define the security-ldap-group-template property to conform to the group naming strategy.
 
-The LDAP group template property defines the template that will be used for the user's LDAP group to support Geode authorizations. A template can be of any size and layout but each section of the template must be separated by the value defined in the security-ldap-separator property. The template can support five (5) defined fields along with other constant values. The five fields are listed below and the only required fields need in a template is the RESOURCE and PERMISSION fields.
+***security-ldap-group-template property***
+**Template**: GEODE-APPLID-ENV-RESOURCE-PERMISSIONS-REGION   
+
+The LDAP group template property defines the template used to parse the LDAP groups assigned to a user to support Geode authorizations.   
+
+A template can be of any size and layout but each section of the template must be separated by the value defined in the *security-ldap-separator property*. The template supports five (5) defined fields and any other combination of constant values. The five fields are listed below. The only required fields required in a template is the RESOURCE and PERMISSION fields. So at the minimum the LDAP group names must define the RESOURCE and PERMISSIONS as part of the LDAP group name.
 
 | Field Name | Description | Required |
 | ---------- | ----------- | -------- |
 | APPLID | Application Id |  |
-| ENV | Environment [dev,uat, prod, etc] |  |   
+| ENV | Environment |    |
+|     | DEV |   |
+|     | UAT |   |
+|     | PERF |   |
+|     | PROD |   |
 | RESOURCE | CLUSTER | Yes |
 |          | DATA    |   |
 | PERMISSIONS | R-Read | Yes |
@@ -130,16 +138,21 @@ The LDAP group template property defines the template that will be used for the 
 
 **Examples**
 
-The following is an LDAP group name for authorizations that uses an **-** separator for the LDAP template components:
+The following is an LDAP group name for authorizations that uses an ***-*** separator for the LDAP template components:
 GEODE-APP1-TEST-CLUSTER-A [The template for the LDAP group would be GEODE-APPID-ENV-RESOURCE-PERMISSIONS].
 
-The following is an LDAP group name for authorizations that uses an **-** separator for the LDAP template components.
+The following is an LDAP group name for authorizations that uses an ***-*** separator for the LDAP template components.
 GEODE-APP1-TEST-DATA-RW-TestRegion [The template for the LDAP group would be GEODE-APPID-ENV-RESOURCE-PERMISSIONS-REGION].
 
 ### Scripts ###
 
-decrypt.sh   
+The following scripts are provided to encrypt and decrypt passwords. The scripts require two (2) parameters to be passed to the script. The first parameter is the master key used to encrypt and decrypt password and the second parameter, depending on the operation, is a clear text or encrypted password.
+
 encrypt.sh   
+   !#/bin/bash   
+   java -cp ./ldap/lib/* -Dsecurity-encryption-master=$1 datatx.geode.security.Encryption encrypt $2   
+   
+decrypt.sh   
 
 
 ### UAA/Credhub ###
