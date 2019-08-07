@@ -7,7 +7,7 @@ If the user credentials retreived from either properties or via Credhub, a check
 
 Once the user name and password have been retreived and decrypted (if necessary), LdapUserSecurityManager calls the LDAP service with the user name and password to authenticate the user credentials. If the credentials are valid, the LdapUserSecurityManager will then query the LDAP service to obtain the authorization groups assigned to the user. 
 
-Once the user has been authenticated and the user authorization groups retreived, a user security principal is created with the user name, roles and last access time and cached by the LdapUserSecurityManager. 
+After the user has been authenticated and the user authorization groups retreived, a user security principal is created with the user name, roles and last access time and cached by the LdapUserSecurityManager. 
 
 When a user is being authenticated by LdapUserSecurityManager, it checks to see if the user security principal last access time has not expired and if the time has not expired it will use the cached credentials in lieu of making a call to UAA and Credhub (if configured) and LDAP service. If the refresh time has expired, a call is made to UAA and Credhub (if configured), password is decrypted (if necessary) and a call is made to the LDAP service.
 
