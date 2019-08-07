@@ -1,6 +1,14 @@
 # Geode LDAP Security # 
 The Geode LDAP Security project provides user security for Geode using LDAP for user authentication and authorization. Geode authorization requires LDAP groups to be created and assigned to a user to determine the user authorization rights. 
 
+### Geode LDAP Security Classes ###
+
+| Package Name | Class Name | Description |
+| datatx.geode.security | Encryption | Performs password encryption and decryption |
+| datatx.geode.security | UsernamePrincipal | Java security principal containing user name and assigned authorization roles |
+| datatx.geode.security | UserPasswordAuthInit | Client authorization initialization for security properties |
+| datatx.geode.security | LdapUserSecurityManager | Performs UAA/Credhub/LDAP requests for user authentication and authorization |
+
 ### Geode LDAP Security Overview ###
 
 ![Geode LDAP Security Overview](https://github.com/pvermeulen-pivotal/datatx-geode-ldap-security/blob/master/Overview.png)
