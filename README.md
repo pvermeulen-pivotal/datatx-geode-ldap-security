@@ -9,6 +9,7 @@ The Geode LDAP Security project provides user security for Geode using LDAP for 
 
 #### Client Properties: gfsecurity.properties ####
 
+
 | Property | Value |
 | -------- | ----- |
 |security-client-auth-init|datatx.geode.security.UserPasswordAuthInit.create|
@@ -16,6 +17,7 @@ The Geode LDAP Security project provides user security for Geode using LDAP for 
 |security-password| Geode User Password |   
 
 #### Locator/Server Properties: gfsecurity.properties ####
+
 
 | Property | Value |
 | -------- | ----- |
@@ -56,7 +58,7 @@ This command starts a Docker daemon container using the ldap:latest image.
 **SSH to the Docker Image**
 
 This command starts an SSH session to the Docker container. The command requires the Docker container id and to obtain the container id run the command docker ps.   
-docker exec -it ed92769117e8  /bin/bash
+*docker exec -it ed92769117e8  /bin/bash*
 
 ### LDAP Configuration ###
 A generic LDAP configuration file is provided. When the docker container is started, the generic-ldap.ldif file is copied to the container in the /opt/unboundid-ldap/ directory.
