@@ -130,7 +130,7 @@ A template can be of any size and layout but each section of the template must b
 
 | Field Name | Description | Value | Required |
 | ---------- | ----------- | ----- | -------- |
-| APPLID | Application Id |  | No |
+| APPLID | Application Id | User Defined | No |
 | ENV | Environment | DEV | No |
 |     |    | DEV |   |
 |     |    | UAT |   |
@@ -142,7 +142,7 @@ A template can be of any size and layout but each section of the template must b
 |             |   | W-Write |   |
 |             |   | M-Manage |   |
 |             |   | A-All |   |
-| REGION | The name of the region |   | No |
+| REGION | The name of the region | Geode region name | No |
 
 **Examples**
 
