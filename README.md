@@ -134,7 +134,7 @@ A template can be of any size and layout but each section of the template must b
 |             |   | W-Write |   |
 |             |   | M-Manage |   |
 |             |   | A-All |   |
-| REGION | Region name |   | No |
+| REGION | The name of the region |   |   | No |
 
 **Examples**
 
