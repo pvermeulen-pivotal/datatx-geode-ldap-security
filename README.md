@@ -180,7 +180,7 @@ Credhub uses TLS encryption and the client accessing Credhub must have a trust s
 
 After downloading the datatx-geode-ldap-security Github project, navigate to the location of where the Git repository was downloaded and go to directory **credhub-uaa** in the datatx-geode-ldap-security project.
 
-**Start UAA/Credhub Services**
+#### Start UAA/Credhub Services ####    
 
 The docker-compose.yml file is used to create and run two Docker containers, pcfseceng/uaa and ampersand8/credhub.   
 
