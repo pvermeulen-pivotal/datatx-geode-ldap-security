@@ -169,28 +169,35 @@ The following scripts are provided to encrypt and decrypt passwords. The scripts
 
 ### UAA/Credhub ###
 
-Certificates
+Authentication via UAA is performed directly with the trusted UAA server. When successfully authenticated, the UAA server will return an access token, which must be sent to CredHub in each request. Once a token is obtained, the token  must be included in the header Authorization: Bearer [token] in your request to CredHub.
 
-start uaa/credhub with docker-compose
+CredHub manages credentials like passwords, users, certificates, certificate authorities, ssh keys, rsa keys and arbitrary values (strings and JSON blobs). 
 
-C:\Develop\credhub-docker\docker-compose>docker-compose up
+Credhub uses TLS encryption and the client accessing Credhub must have a trust store containing the Credhub TLS certificate. The LdapUserSecurityManager is configured to trust any servers certificate so a trust store is not required.   
 
+After downloading the datatx-geode-ldap-security Github project, navigate to the location of where the Git repository was downloaded and go to directory **credhub-uaa** in the datatx-geode-ldap-security project.
+
+**Start UAA/Credhub Services**
+
+The docker-compose.yml file is used to create and run two Docker containers, pcfseceng/uaa and ampersand8/credhub.   
+
+After downloading the datatx-geode-ldap-security Github project, navigate to the location of where the Git repository was downloaded and go to directory **credhub-uaa/docker-compose** in the datatx-geode-ldap-security project and run the Docker command below. The docker-compose up command will build the docker images and then start the containers.
+
+***docker-compose up***
+
+After the Credhub service has started, users will need to be added to the Credhub service. Run the following commands which first will retreive the token from the UAA service and then call Credhub service to add the users with the UAA token.   
+
+***Get UAA Token***
 token=$(curl -q -s -XPOST -H"Application/json" --data "client_id=credhub_client&client_secret=secret&client_id=credhub_client&grant_type=client_credentials&response_type=token" http://localhost:8081/uaa/oauth/token | jq -r .access_token)
 
-curl -k https://localhost:9000/api/v1/data?name=/thisissometest -H "content-type: application/json" -H "authorization: bearer ${token}" | jq .
-
+***Add User uTestClusterAll***
 curl -k -XPUT https://localhost:9000/api/v1/data -H "content-type: application/json" -H "authorization: bearer ${token}" -d '{"name": "/uTestClusterAll","type":"json","value": {"password":"password"}}' | jq .
 
+***Add User uTestClusterManage***
 curl -k -XPUT https://localhost:9000/api/v1/data -H "content-type: application/json" -H "authorization: bearer ${token}" -d '{"name": "/uTestClusterManage","type":"json","value": {"password":"password"}}' | jq .
 
+***Add User uTestDataAll***
 curl -k -XPUT https://localhost:9000/api/v1/data -H "content-type: application/json" -H "authorization: bearer ${token}" -d '{"name": "/uTestDataAll","type":"json","value": {"password":"password"}}' | jq .
 
+***Add User uTestDataReadWrite***
 curl -k -XPUT https://localhost:9000/api/v1/data -H "content-type: application/json" -H "authorization: bearer ${token}" -d '{"name": "/uTestDataReadWrite","type":"json","value": {"password":"password"}}' | jq .
-
-curl -k -XPUT https://localhost:9000/api/v1/data -H "content-type: application/json" -H "authorization: bearer ${token}" -d '{"name": "/uProdClusterAll","type":"json","value": {"password":"password"}}' | jq .
-
-curl -k -XPUT https://localhost:9000/api/v1/data -H "content-type: application/json" -H "authorization: bearer ${token}" -d '{"name": "/uProdClusterManage","type":"json","value": {"password":"password"}}' | jq .
-
-curl -k -XPUT https://localhost:9000/api/v1/data -H "content-type: application/json" -H "authorization: bearer ${token}" -d '{"name": "/uProdDataAll","type":"json","value": {"password":"password"}}' | jq .
-
-curl -k -XPUT https://localhost:9000/api/v1/data -H "content-type: application/json" -H "authorization: bearer ${token}" -d '{"name": "/uProdDataReadWrite","type":"json","value": {"password":"password"}}' | jq .
