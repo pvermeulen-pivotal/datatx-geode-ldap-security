@@ -1,5 +1,9 @@
-# Datatx Geode Ldap Security # 
+# Geode LDAP Security # 
 The datatx-geode-ldap-security project provides user security for Geode using LDAP for user authentication and authorization. Geode authorization requires LDAP groups to be created and assigned to a user to determine the user authorization rights. 
+
+## Geode LDAP Security Overview ##
+
+![Geode LDAP Security Overview](https://github.com/pvermeulen-pivotal/datatx-geode-ldap-security/blob/master/Overview.png)
 
 ## Security Properties ##
 
@@ -8,8 +12,8 @@ The datatx-geode-ldap-security project provides user security for Geode using LD
 | Property | Value |
 | -------- | ----- |
 |security-client-auth-init|datatx.geode.security.UserPasswordAuthInit.create|
-|security-username| The User Name|
-|security-password| The User Password |   
+|security-username| Geode User Name|
+|security-password| Geode User Password |   
 
 #### Locator/Server Properties: gfsecurity.properties ####
 
@@ -18,11 +22,11 @@ The datatx-geode-ldap-security project provides user security for Geode using LD
 |security-manager|datatx.geode.security.LdapUserSecurityManager|
 |security-peer|true|   
 |security-username|peer|
-|security-password|    |
+|security-password|{empty}|
 |security-log-file|security.log|
 |security-log-level|CONFIG|
 |security-encryption-key| This is the master key for encypting and decrypting user passwords in the event UAA/Credhub is not used and user passwords are encrypted|   
-|security-enable-oaa-credhub|A boolean (true/false) setting if UAA and Credhub services are used for security|
+|security-enable-oaa-credhub|A boolean (true/false) setting if UAA and Credhub services are used for security|credentials
 |security-uaa-url|The URL of the server hosting UAA service|    
 |security-uaa-entity|The UAA services entities|
 |security-credhub-url|The URL of the server hosting the Credhub service|
