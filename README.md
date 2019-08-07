@@ -170,7 +170,7 @@ GEODE-APP1-TEST-DATA-RW-TestRegion [The template for the LDAP group would be GEO
 
 ### Scripts ###
 
-The following scripts are provided to encrypt and decrypt passwords. The scripts require two (2) parameters to be passed to the script. The first parameter is the master key used to encrypt and decrypt password and the second parameter, depending on the operation, is a clear text or encrypted password.
+The following scripts are provided to encrypt and decrypt passwords. The scripts require two (2) parameters to be passed. The first parameter is the master key used to encrypt and decrypt password and the second parameter, depending on the operation, is a clear text or encrypted password.
 
 **encrypt.sh**
 
