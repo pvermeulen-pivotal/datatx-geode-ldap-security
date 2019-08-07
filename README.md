@@ -120,21 +120,21 @@ The LDAP group template property defines the template used to parse the LDAP gro
 
 A template can be of any size and layout but each section of the template must be separated by the value defined in the *security-ldap-separator property*. The template supports five (5) defined fields and any other combination of constant values. The five fields are listed below. The only required fields required in a template is the RESOURCE and PERMISSION fields. So at the minimum the LDAP group names must define the RESOURCE and PERMISSIONS as part of the LDAP group name.
 
-| Field Name | Description | Required |
-| ---------- | ----------- | -------- |
-| APPLID | Application Id |  |
-| ENV | Environment |    |
-|     | DEV |   |
-|     | UAT |   |
-|     | PERF |   |
-|     | PROD |   |
-| RESOURCE | CLUSTER | Yes |
-|          | DATA    |   |
-| PERMISSIONS | R-Read | Yes |
-|             | W-Write |   |
-|             | M-Manage |   |
-|             | A-All |   |
-| REGION | Region name |   |
+| Field Name | Description | Value | Required |
+| ---------- | ----------- | ----- | -------- |
+| APPLID | Application Id |  | No |
+| ENV | Environment | DEV | No |
+|     |    | DEV |   |
+|     |    | UAT |   |
+|     |    | PERF |   |
+|     |    | PROD |   |
+| RESOURCE | Resource to secure | CLUSTER | Yes |
+|          |    | DATA    |   |
+| PERMISSIONS | Role Permission | R-Read | Yes |
+|             |   | W-Write |   |
+|             |   | M-Manage |   |
+|             |   | A-All |   |
+| REGION | Region name |   | No |
 
 **Examples**
 
@@ -149,11 +149,12 @@ GEODE-APP1-TEST-DATA-RW-TestRegion [The template for the LDAP group would be GEO
 The following scripts are provided to encrypt and decrypt passwords. The scripts require two (2) parameters to be passed to the script. The first parameter is the master key used to encrypt and decrypt password and the second parameter, depending on the operation, is a clear text or encrypted password.
 
 encrypt.sh   
-   !#/bin/bash   
-   java -cp ./ldap/lib/* -Dsecurity-encryption-master=$1 datatx.geode.security.Encryption encrypt $2   
+    !#/bin/bash    
+    java -cp ./ldap/lib/* -Dsecurity-encryption-master=$1 datatx.geode.security.Encryption encrypt $2    
    
 decrypt.sh   
-
+    !#/bin/bash    
+    java -cp ./ldap/lib/* -Dsecurity-encryption-master=$1 datatx.geode.security.Encryption decrypt $2    
 
 ### UAA/Credhub ###
 
