@@ -45,17 +45,17 @@ After downloading the datatx-geode-ldap-security Github project, navigate to the
 
 **Build the Docker Image**
 
-This command creates a Docker image with a tag of ldap:latest and uses the Docker file in datatx-geode-ldap-security/ldap directory.
+This command creates a Docker image with a tag of ldap:latest and uses the Docker file in datatx-geode-ldap-security/ldap directory.   
 *docker build -t "ldap:latest" -f Dockerfile .*
 
 **Start the Docker Image**
 
-This command starts a Docker daemon container using the ldap:latest image.
+This command starts a Docker daemon container using the ldap:latest image.   
 *docker run -t -d -p 389:389  ldap:latest*
 
 **SSH to the Docker Image**
 
-This command starts an SSH session to the Docker container. The command requires the Docker container id and to obtain the container id run the command docker ps.
+This command starts an SSH session to the Docker container. The command requires the Docker container id and to obtain the container id run the command docker ps.   
 docker exec -it ed92769117e8  /bin/bash
 
 ### LDAP Configuration ###
