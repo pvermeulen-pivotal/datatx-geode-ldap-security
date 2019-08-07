@@ -3,8 +3,6 @@ The datatx-geode-ldap-security project provides user security for Geode using LD
 
 ## Geode LDAP Security Overview ##
 
-![Geode LDAP Security Overview](https://github.com/pvermeulen-pivotal/datatx-geode-ldap-security/blob/master/Overview.png)
-
 ## Security Properties ##
 
 #### Client Properties: gfsecurity.properties ####
