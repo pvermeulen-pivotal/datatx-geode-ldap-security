@@ -188,7 +188,7 @@ Authentication via UAA is performed directly with the trusted UAA server. When s
 
 CredHub manages credentials like passwords, users, certificates, certificate authorities, ssh keys, rsa keys and arbitrary values (strings and JSON blobs). 
 
-Credhub uses TLS encryption and the client accessing Credhub must have a trust store containing the Credhub TLS certificate. The LdapUserSecurityManager is configured to trust any servers certificate so a trust store is not required.   
+Credhub uses TLS encryption, so clients accessing Credhub must have a trust store containing the Credhub TLS certificate for the session to be authenticated. The LdapUserSecurityManager is configured to trust any server's certificate so a trust store is not required. This behavior is not configurable so any behavioral changes will require code change. 
 
 After downloading the datatx-geode-ldap-security Github project, navigate to the location of where the Git repository was downloaded and go to directory **credhub-uaa** in the datatx-geode-ldap-security project.
 
