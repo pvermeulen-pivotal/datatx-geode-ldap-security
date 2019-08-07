@@ -4,6 +4,7 @@ The Geode LDAP Security project provides user security for Geode using LDAP for 
 ### Geode LDAP Security Classes ###
 
 | Package Name | Class Name | Description |
+| ------------ | ---------- | ----------- |
 | datatx.geode.security | Encryption | Performs password encryption and decryption |
 | datatx.geode.security | UsernamePrincipal | Java security principal containing user name and assigned authorization roles |
 | datatx.geode.security | UserPasswordAuthInit | Client authorization initialization for security properties |
