@@ -41,18 +41,21 @@ The Geode LDAP Security project provides user security for Geode using LDAP for 
 
 ### Generic Unbounded Docker LDAP ###
 
-After downloading the Github project, navigate to the location of where the git repository was downloaded and go to directory **ldap** in the datatx-geode-ldap-security project.
+After downloading the datatx-geode-ldap-security Github project, navigate to the location of where the git repository was downloaded and go to directory **ldap** in the datatx-geode-ldap-security project.
 
 **Build the Docker Image**
 
-docker build -t "ldap:latest" -f Dockerfile .
+This command creates a Docker image with a tag of ldap:latest and uses the Docker file in datatx-geode-ldap-security/ldap directory.
+*docker build -t "ldap:latest" -f Dockerfile .*
 
 **Start the Docker Image**
 
-docker run -t -d -p 389:389  ldap:latest
+This command starts a Docker daemon container using the ldap:latest image.
+*docker run -t -d -p 389:389  ldap:latest*
 
 **SSH to the Docker Image**
 
+This command starts an SSH session to the Docker container. The command requires the Docker container id and to obtain the container id run the command docker ps.
 docker exec -it ed92769117e8  /bin/bash
 
 ### LDAP Configuration ###
@@ -82,7 +85,7 @@ objectClass: top
 objectClass: organizationalUnit   
 ou: group   
 
-__**User Definition**__
+##### **User Definition** #####
 
 dn: cn=uTestClusterAll,ou=people,ou=corporate,dc=customer,dc=com   
 objectClass: top   
@@ -91,7 +94,7 @@ uid: uTestClusterAll
 cn: uTestClusterAll   
 userPassword: password   
 
-__**User Group Definition**__
+##### **User Group Definition** #####
 
 dn: cn=GEODE-APP1-TEST-CLUSTER-A,ou=group,ou=corporate,dc=customer,dc=com   
 objectClass: top   
