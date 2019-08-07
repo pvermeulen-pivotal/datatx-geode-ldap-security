@@ -36,15 +36,15 @@ The Geode LDAP Security project provides user security for Geode using LDAP for 
 |security-password|{empty}|
 |security-log-file|security.log|
 |security-log-level|CONFIG|
-|security-encryption-key| This is the master key for encypting and decrypting user passwords in the event UAA/Credhub is not used and user passwords are encrypted|   
+|security-encryption-key| This is the master key for encrypting and decrypting user passwords in the event UAA/Credhub is not used and user passwords are encrypted|   
 |security-enable-oaa-credhub|A boolean (true/false) setting if UAA and Credhub services are used for security|credentials
 |security-uaa-url|The URL of the server hosting UAA service|    
 |security-uaa-entity|The UAA services entities|
 |security-credhub-url|The URL of the server hosting the Credhub service|
 |security-ldap-usessl|A boolean (true/false) indicating if the LDAP connection uses SSL|
 |security-ldap-server|The LDAP server name and port [server:port]|
-|security-ldap-basedn|The base distingushed name used for user authentication and authorization|
-|security-ldapSearchGroup|The LDAP object components that make up the the group's common name (cn)|
+|security-ldap-basedn|The base distinguished name used for user authentication and authorization|
+|security-ldapSearchGroup|The LDAP object components that make up the group's common name (cn)|
 |security-ldapGemfireAuthorizationQuery|LDAP query for obtaining user authorization roles|
 |security-credentials-refresh|This time in minutes before cached user credentials are refreshed|
 |security-ldap-group-separator|A character used to separate the LDAP group names defined for user authorization|
@@ -52,7 +52,7 @@ The Geode LDAP Security project provides user security for Geode using LDAP for 
 
 ### Generic Unbounded Docker LDAP ###
 
-After downloading the datatx-geode-ldap-security Github project, navigate to the location of where the git repository was downloaded and go to directory **ldap** in the datatx-geode-ldap-security project.
+After downloading the datatx-geode-ldap-security Github project, navigate to the location of where the Git repository was downloaded and go to directory **ldap** in the datatx-geode-ldap-security project.
 
 **Build the Docker Image**
 
@@ -70,9 +70,9 @@ This command starts an SSH session to the Docker container. The command requires
 ***docker exec -it ed92769117e8  /bin/bash***
 
 ### LDAP Configuration ###
-A generic LDAP configuration file is provided. When the docker container is started, the generic-ldap.ldif file is copied to the container in the /opt/unboundid-ldap/ directory.
+A generic LDAP configuration file is provided. When the Docker container is started, the generic-ldap.ldif file is copied to the container in the /opt/unboundid-ldap/ directory.
 
-Below is an excert of the generic-ldap.ldif configuration file
+Below is an excerpt of the generic-ldap.ldif configuration file
 
 #### generic-ldap.ldif ####
 
