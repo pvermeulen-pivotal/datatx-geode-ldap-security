@@ -116,8 +116,11 @@ The LDAP group template property defines the template that will be used for the 
 | APPLID | Application Id |  |
 | ENV | Environment [dev,uat, prod, etc] |  |   
 | RESOURCE | CLUSTER | Yes |
-|          | DATA    | Yes |
-| PERMISSIONS | R[read],W[write],M[manage],A[all] | Yes |
+|          | DATA    |   |
+| PERMISSIONS | R-Read | Yes |
+|             | W-Write |   |
+|             | M-Manage |   |
+|             | A-All |   |
 | REGION | Region name |   |
 
 __**Examples**__
