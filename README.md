@@ -1,5 +1,5 @@
 # Geode LDAP Security # 
-The datatx-geode-ldap-security project provides user security for Geode using LDAP for user authentication and authorization. Geode authorization requires LDAP groups to be created and assigned to a user to determine the user authorization rights. 
+The Geode LDAP Security project provides user security for Geode using LDAP for user authentication and authorization. Geode authorization requires LDAP groups to be created and assigned to a user to determine the user authorization rights. 
 
 ### Geode LDAP Security Overview ###
 
@@ -58,7 +58,7 @@ docker exec -it ed92769117e8  /bin/bash
 ### LDAP Configuration ###
 A generic LDAP configuration file is provided. When the docker container is started, the generic-ldap.ldif file is copied to the container in the /opt/unboundid-ldap/ directory.
 
-Below is an excert of the generic-ldap.ldif configuration fuile
+Below is an excert of the generic-ldap.ldif configuration file
 
 #### generic-ldap.ldif ####
 
@@ -115,8 +115,9 @@ The LDAP group template property defines the template that will be used for the 
 | ---------- | ----------- | -------- |
 | APPLID | Application Id |  |
 | ENV | Environment [dev,uat, prod, etc] |  |   
-| RESOURCE | CLUSTER,DATA | Yes |
-| PERMISSIONS | R[read],W[write],M[manage],A[all] | Yesy |
+| RESOURCE | CLUSTER | Yes |
+|          | DATA    | Yes |
+| PERMISSIONS | R[read],W[write],M[manage],A[all] | Yes |
 | REGION | Region name |   |
 
 __**Examples**__
