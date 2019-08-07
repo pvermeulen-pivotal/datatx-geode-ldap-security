@@ -65,8 +65,7 @@ When a user is being authenticated by LdapUserSecurityManager, it checks to see 
 
 ### Unbounded Docker LDAP ###
 
-**Note**   
-***The Unbounded Docker LDAP is used for testing only and should never be used in production***   
+**Note:** ***The Unbounded Docker LDAP is used for testing only and should never be used in production***   
 
 After downloading the datatx-geode-ldap-security Github project, navigate to the location of where the Git repository was downloaded and go to directory **ldap** in the datatx-geode-ldap-security project.
 
@@ -195,8 +194,7 @@ After downloading the datatx-geode-ldap-security Github project, navigate to the
 
 #### Start UAA/Credhub Services ####    
 
-**Note:**   
-***The UAA/Credhub Services are used for testing only and should never be used in production***   
+**Note:** ***The UAA/Credhub Services are used for testing only and should never be used in production***   
 
 The docker-compose.yml file is used to create and run two Docker containers, pcfseceng/uaa and ampersand8/credhub.   
 
