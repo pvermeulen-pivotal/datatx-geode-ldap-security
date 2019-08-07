@@ -9,7 +9,7 @@ Once the user name and password have been retreived and decrypted (if necessary)
 
 After the user has been authenticated and the user authorization groups retreived, a user security principal is created with the user name, roles and last access time are cached by the LdapUserSecurityManager. 
 
-When a user is being authenticated by LdapUserSecurityManager, it checks to see if the user security principal refresh time has not expired and if the time has not expired it return the cached credentials in lieu of making a call to UAA and Credhub (if configured) and LDAP service. If the refresh time has expired, a call is made to UAA and Credhub (if configured), password is decrypted (if necessary) and a call is made to the LDAP service.
+When a user is being authenticated by LdapUserSecurityManager, it checks to see if the user security principal refresh time has not expired and if the time has not expired the cached credentials are returned in lieu of making a call to UAA and Credhub (if configured) and LDAP service. If the refresh time has expired, a call is made to UAA and Credhub (if configured), password is decrypted (if necessary) and a call is made to the LDAP service.
 
 ### Geode LDAP Security Overview ###
 
@@ -65,8 +65,8 @@ When a user is being authenticated by LdapUserSecurityManager, it checks to see 
 
 ### Unbounded Docker LDAP ###
 
-**Note**
-***The Unbounded Docker LDAP is used for testing only and should never be used in production***
+**Note**   
+***The Unbounded Docker LDAP is used for testing only and should never be used in production***   
 
 After downloading the datatx-geode-ldap-security Github project, navigate to the location of where the Git repository was downloaded and go to directory **ldap** in the datatx-geode-ldap-security project.
 
@@ -136,14 +136,14 @@ To view the LDAP configuration download the Apache Directory Studio from http://
 
 ### LDAP Authorization Groups ###
 
-LDAP authorization groups are LDAP group objects that are used to define the Geode authorization roles. One or more LDAP groups can be assigned to a user to create the users Geode authorization. After deciding on how the LDAP group names will be constructed in LDAP define the security-ldap-group-template property to conform to the group naming strategy.
+LDAP authorization groups are LDAP group objects used to define the Geode authorization roles. One or more LDAP groups can be assigned to a user to create the users Geode authorization. After deciding on how the LDAP group names will be constructed in LDAP, define the security-ldap-group-template property to conform to the group naming strategy.
 
 ***security-ldap-group-template property***
 **Template**: GEODE-APPLID-ENV-RESOURCE-PERMISSIONS-REGION   
 
 The LDAP group template property defines the template used to parse the LDAP groups assigned to a user to support Geode authorizations.   
 
-A template can be of any size and layout but each section of the template must be separated by the value defined in the *security-ldap-separator property*. The template supports five (5) defined fields and any other combination of constant values. The five fields are listed below. The only required fields required in a template is the RESOURCE and PERMISSION fields. So at the minimum the LDAP group names must define the RESOURCE and PERMISSIONS as part of the LDAP group name.
+A template can be of any size and layout but each section of the template must be separated by the value defined in the ***security-ldap-separator property***. The template supports five (5) defined fields and any other combination of constant values. The five fields are listed below. The only required fields required in a template is the RESOURCE and PERMISSION fields. So at the minimum the LDAP group names must define the RESOURCE and PERMISSIONS as part of the LDAP group name.
 
 | Field Name | Description | Value | Required |
 | ---------- | ----------- | ----- | -------- |
@@ -195,8 +195,8 @@ After downloading the datatx-geode-ldap-security Github project, navigate to the
 
 #### Start UAA/Credhub Services ####    
 
-**Note**
-***The UAA/Credhub Services are used for testing only and should never be used in production***
+**Note:**   
+***The UAA/Credhub Services are used for testing only and should never be used in production***   
 
 The docker-compose.yml file is used to create and run two Docker containers, pcfseceng/uaa and ampersand8/credhub.   
 
