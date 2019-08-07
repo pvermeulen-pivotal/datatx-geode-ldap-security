@@ -125,11 +125,11 @@ The LDAP group template property defines the template that will be used for the 
 
 **Examples**
 
-The following is an LDAP group name for authorizations that use an **-** separator the LDAP template components.
-GEODE-APP1-TEST-CLUSTER-A and the template for the LDAP group would be GEODE-APPID-ENV-RESOURCE-PERMISSIONS.
+The following is an LDAP group name for authorizations that uses an **-** separator for the LDAP template components:
+GEODE-APP1-TEST-CLUSTER-A [The template for the LDAP group would be GEODE-APPID-ENV-RESOURCE-PERMISSIONS].
 
-The following is an LDAP group name for authorizations that use an **-** separator the LDAP template components.
-GEODE-APP1-TEST-DATA-RW-TestRegion and the template for the LDAP group would be GEODE-APPID-ENV-RESOURCE-PERMISSIONS-REGION.
+The following is an LDAP group name for authorizations that uses an **-** separator for the LDAP template components.
+GEODE-APP1-TEST-DATA-RW-TestRegion [The template for the LDAP group would be GEODE-APPID-ENV-RESOURCE-PERMISSIONS-REGION].
 
 ### Scripts ###
 
