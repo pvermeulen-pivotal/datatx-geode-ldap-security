@@ -1,5 +1,19 @@
 # Geode LDAP Security # 
-The Geode LDAP Security project provides user security for Geode using LDAP for user authentication and authorization. Geode authorization requires LDAP groups to be created and assigned to a user to determine the user authorization rights. 
+The Geode LDAP Security project provides user security for Geode clients and peers using LDAP for authentication and authorization. Geode performs user authentication (user name and password) and retreives LDAP groups assigned to the user for authorization rights. 
+
+By configuring the ***security-enable-oaa-credhub*** property and setting it to true and also configuring the UAA ***security-uaa-url*** and Credhub ***security-credhub-url*** URLs and UAA ***security-uaa-entity*** entities, the LdapUserSecurityManager will first call the UAA service to obtain an access token which is used to access the Credhub service. After the access token has been obtained, a call is made to Credhub to retreive a user's credentials.
+
+If the user credentials retreived from either properties or via Credhub, a check is made to determine if the password is encrypted. If the user password is encrypted, the LdapUserSecurityManager will decrypt the password.
+
+Once the user name and password have been retreived and decrypted (if necessary), LdapUserSecurityManager calls the LDAP service with the user name and password to authenticate the user credentials. If the credentials are valid, the LdapUserSecurityManager will then query the LDAP service to obtain the authorization groups assigned to the user. 
+
+Once the user has been authenticated and the user authorization groups retreived, a user security principal is created with the user name, roles and last access time and cached by the LdapUserSecurityManager. 
+
+When a user is being authenticated by LdapUserSecurityManager, it checks to see if the user security principal last access time has not expired and if the time has not expired it will use the cached credentials in lieu of making a call to UAA and Credhub (if configured) and LDAP service. If the refresh time has expired, a call is made to UAA and Credhub (if configured), password is decrypted (if necessary) and a call is made to the LDAP service.
+
+### Geode LDAP Security Overview ###
+
+![Geode LDAP Security Overview](https://github.com/pvermeulen-pivotal/datatx-geode-ldap-security/blob/master/Overview.png)
 
 ### Geode LDAP Security Classes ###
 
@@ -9,10 +23,6 @@ The Geode LDAP Security project provides user security for Geode using LDAP for 
 | datatx.geode.security | UsernamePrincipal | Java security principal containing user name and assigned authorization roles |
 | datatx.geode.security | UserPasswordAuthInit | Client authorization initialization for security properties |
 | datatx.geode.security | LdapUserSecurityManager | Performs UAA/Credhub/LDAP requests for user authentication and authorization |
-
-### Geode LDAP Security Overview ###
-
-![Geode LDAP Security Overview](https://github.com/pvermeulen-pivotal/datatx-geode-ldap-security/blob/master/Overview.png)
 
 ### Security Properties ###
 
