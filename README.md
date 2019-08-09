@@ -150,7 +150,6 @@ A template can be of any size and layout but each section of the template must b
 | ---------- | ----------- | ----- | -------- |
 | APPLID | Application Id | User Defined | No |
 | ENV | Environment | DEV | No |
-|     |    | DEV |   |
 |     |    | UAT |   |
 |     |    | PERF |   |
 |     |    | PROD |   |
