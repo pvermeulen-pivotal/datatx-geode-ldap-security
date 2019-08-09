@@ -144,7 +144,7 @@ LDAP authorization groups are LDAP group objects used to define the Geode author
 
 The LDAP group template property defines the template used to parse the LDAP groups assigned to a user to support Geode authorizations.   
 
-A template can be of any size and layout but each section of the template must be separated by the value defined in the ***security-ldap-separator property***. The template supports five (5) defined fields and any other combination of constant values. The five fields are listed below. The only required fields required in a template is the RESOURCE and PERMISSION fields. So at the minimum the LDAP group names must define the RESOURCE and PERMISSIONS as part of the LDAP group name.
+A template can be of any size and layout but each section of the template must be separated by the value defined in the ***security-ldap-separator property***. The template supports five (5) defined fields and any other combination of constant values. The five fields are listed below. The only required fields in a template is the RESOURCE and PERMISSION fields. So at the minimum the LDAP group names must define the RESOURCE and PERMISSIONS as part of the LDAP group name.
 
 | Field Name | Description | Value | Required |
 | ---------- | ----------- | ----- | -------- |
