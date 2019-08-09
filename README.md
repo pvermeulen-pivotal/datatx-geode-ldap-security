@@ -197,9 +197,9 @@ After downloading the datatx-geode-ldap-security Github project, navigate to the
 
 **Note:** ***The UAA/Credhub Services are used for testing only and should never be used in production***   
 
-The docker-compose.yml file is used to create and run two Docker containers, pcfseceng/uaa and ampersand8/credhub.   
+The docker-compose.yml file is used to create and run two Docker containers, pcfseceng/uaa and ampersand8/credhub. The -d option runs the services as daemon processes.   
 
-***docker-compose up***   
+***docker-compose up -d***   
 
 After the Credhub service has started, users will need to be added to the Credhub service. Run the following commands, the first command will retreive the token from the UAA service and the remaining commands call Credhub service to add the users with the UAA token.   
 
