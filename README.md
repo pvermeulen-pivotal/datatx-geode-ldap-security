@@ -164,10 +164,10 @@ A template can be of any size and layout but each section of the template must b
 **Examples**
 
 The following is an LDAP group name for authorizations that uses an ***-*** separator for the LDAP template components:
-GEODE-APP1-TEST-CLUSTER-A [The template for the LDAP group would be GEODE-APPID-ENV-RESOURCE-PERMISSIONS].
+GEODE-APP1-UAT-CLUSTER-A [The template for the LDAP group would be GEODE-APPID-ENV-RESOURCE-PERMISSIONS].
 
 The following is an LDAP group name for authorizations that uses an ***-*** separator for the LDAP template components.
-GEODE-APP1-TEST-DATA-RW-TestRegion [The template for the LDAP group would be GEODE-APPID-ENV-RESOURCE-PERMISSIONS-REGION].
+GEODE-APP1-UAT-DATA-RW-TestRegion [The template for the LDAP group would be GEODE-APPID-ENV-RESOURCE-PERMISSIONS-REGION].
 
 ### Scripts ###
 
