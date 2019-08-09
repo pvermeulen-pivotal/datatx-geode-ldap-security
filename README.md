@@ -73,7 +73,7 @@ After downloading the datatx-geode-ldap-security Github project, navigate to the
 
 **Build the Docker Image**
 
-This command creates a Docker image with a tag of ldap:latest and uses the Docker file in datatx-geode-ldap-security/ldap directoryto create the Docker image.   
+This command creates a Docker image with a tag of ldap:latest and uses the Docker file in datatx-geode-ldap-security/ldap directory to create the Docker image.   
 ***docker build -t "ldap:latest" -f Dockerfile .***
 
 **Start the Docker Image**
