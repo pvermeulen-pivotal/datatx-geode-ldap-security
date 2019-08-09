@@ -204,7 +204,7 @@ The docker-compose.yml file is used to create and run two Docker containers, pcf
 After the Credhub service has started, users will need to be added to the Credhub service. Run the following commands, the first command will retreive the token from the UAA service and the remaining commands call Credhub service to add the users with the UAA token.   
 
 ***Get UAA Token***   
-token=$(curl -q -s -XPOST -H"Application/json" --data "client_id=credhub_client&client_secret=secret&client_id=credhub_client&grant_type=client_credentials&response_type=token" http://localhost:8081/uaa/oauth/token | jq -r .access_token)   
+token=$(curl -q -s -XPOST -H"Application/json" --data "client_id=credhub_client&client_secret=secret&grant_type=client_credentials&response_type=token" http://localhost:8081/uaa/oauth/token | jq -r .access_token)   
 
 ***Add User uTestClusterAll***   
 curl -k -XPUT https://localhost:9000/api/v1/data -H "content-type: application/json" -H "authorization: bearer ${token}" -d '{"name": "/uTestClusterAll","type":"json","value": {"password":"password"}}' | jq .   
