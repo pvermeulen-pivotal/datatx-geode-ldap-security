@@ -11,7 +11,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class Encryption {
 	private static final String MASTER = "security-encryption-master";
-	private static final String CIPHER = "AES/ECB/PKCS5Padding";
+	private static final String CIPHER = "AES";
 	private static final String ENCRYPTION = "AES";
 
 	public static String encrypt(String plainText) throws EncryptionException {

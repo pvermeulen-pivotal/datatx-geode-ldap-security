@@ -420,7 +420,7 @@ public class LdapUserSecurityManager implements SecurityManager {
 			if (encryptionKey != null) {
 				try {
 					passwd = passwd.substring(ENCRYPTED.length());
-					env.put(Context.SECURITY_CREDENTIALS, Encryption.decrypt(passwd, passwd.getBytes()));
+					env.put(Context.SECURITY_CREDENTIALS, Encryption.decrypt(passwd, encryptionKey.getBytes()));
 				} catch (EncryptionException ce) {
 					throw new AuthenticationFailedException(ce.getMessage());
 				}
