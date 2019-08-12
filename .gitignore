@@ -1,6 +1,8 @@
+.DS_Store
 .classpath
 .project
 .settings/
 target/
 src/test
 Overview.odg
+credhub-uaa/.DS_Store
