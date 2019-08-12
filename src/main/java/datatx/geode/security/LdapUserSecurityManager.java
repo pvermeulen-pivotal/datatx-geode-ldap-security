@@ -1,6 +1,6 @@
+package datatx.geode.security;
 
 import org.apache.commons.lang.StringUtils;
-package datatx.geode.security;
 import org.apache.geode.security.AuthenticationFailedException;
 import org.apache.geode.security.ResourcePermission;
 import org.apache.geode.security.SecurityManager;
@@ -19,8 +19,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import datatx.geode.security.Encryption.EncryptionException;
 
 import javax.naming.Context;
 import javax.naming.NamingEnumeration;
@@ -42,6 +40,9 @@ import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
 import java.util.*;
 
+import datatx.geode.security.Encryption.EncryptionException;
+import datatx.geode.security.UserPasswordAuthInit;
+
 public class LdapUserSecurityManager implements SecurityManager {
 	public static final String LDAP_SERVER_NAME = "security-ldap-server";
 	public static final String LDAP_BASEDN_NAME = "security-ldap-basedn";
@@ -58,7 +59,6 @@ public class LdapUserSecurityManager implements SecurityManager {
 	public static final String ENABLE_UAA_CREDHUB = "security-enable-uaa-credhub";
 	public static final String ENCRYPTION_KEY = "security-encryption-master";
 	public static final String SECURITY_PEER = "security-peer";
-	public static final String CREDHUB_MASTER_KEY = "security-credhub-master-key-name";
 	public static final String FILE = "file:";
 	public static final String CREDHUB = "credhub:";
 
@@ -180,8 +180,6 @@ public class LdapUserSecurityManager implements SecurityManager {
 			peer = Boolean.valueOf(str);
 		}
 
-		credhubMasterKeyName = securityProperties.getProperty(CREDHUB_MASTER_KEY);
-
 		encryptionKey = getKey(securityProperties.getProperty(ENCRYPTION_KEY));
 
 		String template = securityProperties.getProperty(LDAP_GROUP_TEMPLATE);
@@ -207,12 +205,13 @@ public class LdapUserSecurityManager implements SecurityManager {
 					throw new AuthenticationFailedException("Failed to get encryption master key from " + key);
 				}
 			} else if (key.toLowerCase().startsWith(CREDHUB)) {
+				credhubMasterKeyName = key.substring(CREDHUB.length());
 				if (credhubMasterKeyName != null && credhubMasterKeyName.length() > 0) {
 					String token = getUAAToken();
 					return getCredhubCredentials(credhubMasterKeyName, token);
 				} else {
-					LOG.error("Master encryption key is provided in Credhub but property " + CREDHUB_MASTER_KEY
-							+ " was not defined");
+					LOG.error("Master encryption key is provided in Credhub but name in " + ENCRYPTION_KEY
+							+ " property was not defined=. To use Credhub for master encryption key credhub:masterUser");
 				}
 			} else {
 				return key;
