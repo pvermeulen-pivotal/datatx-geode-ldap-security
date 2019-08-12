@@ -50,8 +50,7 @@ When a user is being authenticated by LdapUserSecurityManager, it checks to see 
 |                  | Master Key - Clear Text |
 |                  | file:/path/filename - Master Key in secure file | 
 |                  | credhub:name - The name in Credhub where the master encryption key is stored|
-|security-credhub-master-key-name| Name in Credhub that contains the encryption master key| 
-|security-enable-oaa-credhub|A boolean (true/false) setting if UAA and Credhub services are used for security|credentials
+|security-enable-oaa-credhub|A boolean (true/false) setting if UAA and Credhub services are used for security|credentials|
 |security-uaa-url|The URL of the server hosting UAA service|    
 |security-uaa-entity|The UAA services entities|
 |security-credhub-url|The URL of the server hosting the Credhub service|
