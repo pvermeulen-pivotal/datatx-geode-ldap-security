@@ -1,6 +1,6 @@
-package datatx.geode.security;
 
 import org.apache.commons.lang.StringUtils;
+package datatx.geode.security;
 import org.apache.geode.security.AuthenticationFailedException;
 import org.apache.geode.security.ResourcePermission;
 import org.apache.geode.security.SecurityManager;
@@ -58,7 +58,9 @@ public class LdapUserSecurityManager implements SecurityManager {
 	public static final String ENABLE_UAA_CREDHUB = "security-enable-uaa-credhub";
 	public static final String ENCRYPTION_KEY = "security-encryption-master";
 	public static final String SECURITY_PEER = "security-peer";
+	public static final String CREDHUB_MASTER_KEY = "security-credhub-master-key-name";
 	public static final String FILE = "file:";
+	public static final String CREDHUB = "credhub:";
 
 	private static final String APPLID = "APPLID";
 	private static final String ENV = "ENV";
@@ -84,6 +86,7 @@ public class LdapUserSecurityManager implements SecurityManager {
 	private String credhubUrl;
 	private String ldapSeperator;
 	private String encryptionKey;
+	private String credhubMasterKeyName;
 
 	private boolean enableUaaCredhub = false;
 	private boolean peer;
@@ -177,6 +180,8 @@ public class LdapUserSecurityManager implements SecurityManager {
 			peer = Boolean.valueOf(str);
 		}
 
+		credhubMasterKeyName = securityProperties.getProperty(CREDHUB_MASTER_KEY);
+
 		encryptionKey = getKey(securityProperties.getProperty(ENCRYPTION_KEY));
 
 		String template = securityProperties.getProperty(LDAP_GROUP_TEMPLATE);
@@ -200,6 +205,14 @@ public class LdapUserSecurityManager implements SecurityManager {
 					return sb.toString();
 				} catch (IOException e) {
 					throw new AuthenticationFailedException("Failed to get encryption master key from " + key);
+				}
+			} else if (key.toLowerCase().startsWith(CREDHUB)) {
+				if (credhubMasterKeyName != null && credhubMasterKeyName.length() > 0) {
+					String token = getUAAToken();
+					return getCredhubCredentials(credhubMasterKeyName, token);
+				} else {
+					LOG.error("Master encryption key is provided in Credhub but property " + CREDHUB_MASTER_KEY
+							+ " was not defined");
 				}
 			} else {
 				return key;
