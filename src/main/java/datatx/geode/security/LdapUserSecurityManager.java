@@ -145,28 +145,22 @@ public class LdapUserSecurityManager implements SecurityManager {
 			ldapUrlScheme = "ldap://";
 		}
 
-		if (enableUaaCredhub) {
-			uaaUrl = securityProperties.getProperty(UAA_URL);
-			if (uaaUrl == null || uaaUrl.length() == 0) {
-				throw new AuthenticationFailedException(
-						"LdapUserAuthenticator: UAA URL property [" + UAA_URL + "] not specified");
-			}
+		uaaUrl = securityProperties.getProperty(UAA_URL);
+		if (enableUaaCredhub && (uaaUrl == null || uaaUrl.length() == 0)) {
+			throw new AuthenticationFailedException(
+					"LdapUserAuthenticator: UAA URL property [" + UAA_URL + "] not specified");
 		}
 
-		if (enableUaaCredhub) {
-			uaaEntity = securityProperties.getProperty(UAA_ENTITY);
-			if (uaaEntity == null || uaaEntity.length() == 0) {
-				throw new AuthenticationFailedException(
-						"LdapUserAuthenticator: UAA Entity property [" + UAA_ENTITY + "] not specified");
-			}
+		uaaEntity = securityProperties.getProperty(UAA_ENTITY);
+		if (enableUaaCredhub && (uaaEntity == null || uaaEntity.length() == 0)) {
+			throw new AuthenticationFailedException(
+					"LdapUserAuthenticator: UAA Entity property [" + UAA_ENTITY + "] not specified");
 		}
 
-		if (enableUaaCredhub) {
-			credhubUrl = securityProperties.getProperty(CREDHUB_URL);
-			if (credhubUrl == null || credhubUrl.length() == 0) {
-				throw new AuthenticationFailedException(
-						"LdapUserAuthenticator: Credhub URL property [" + CREDHUB_URL + "] not specified");
-			}
+		credhubUrl = securityProperties.getProperty(CREDHUB_URL);
+		if (enableUaaCredhub && (credhubUrl == null || credhubUrl.length() == 0)) {
+			throw new AuthenticationFailedException(
+					"LdapUserAuthenticator: Credhub URL property [" + CREDHUB_URL + "] not specified");
 		}
 
 		ldapSeperator = securityProperties.getProperty(LDAP_GROUP_SEPERATOR);
@@ -207,8 +201,14 @@ public class LdapUserSecurityManager implements SecurityManager {
 			} else if (key.toLowerCase().startsWith(CREDHUB)) {
 				credhubMasterKeyName = key.substring(CREDHUB.length());
 				if (credhubMasterKeyName != null && credhubMasterKeyName.length() > 0) {
-					String token = getUAAToken();
-					return getCredhubCredentials(credhubMasterKeyName, token);
+					if (uaaUrl != null && uaaUrl.length() > 0 && uaaEntity != null && uaaEntity.length() > 0
+							&& credhubUrl != null && credhubUrl.length() > 0) {
+						String token = getUAAToken();
+						return getCredhubCredentials(credhubMasterKeyName, token);
+					} else {
+						LOG.error("Master encryption key is provided in Credhub but the property " + UAA_URL + " or "
+								+ UAA_ENTITY + " or " + CREDHUB_URL + " is invalid or missing");
+					}
 				} else {
 					LOG.error("Master encryption key is provided in Credhub but name in " + ENCRYPTION_KEY
 							+ " property was not defined=. To use Credhub for master encryption key credhub:masterUser");
