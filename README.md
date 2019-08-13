@@ -48,8 +48,9 @@ When a user is being authenticated by LdapUserSecurityManager, it checks to see 
 |security-log-level|CONFIG|
 |security-encryption-key| This is the master key for encrypting and decrypting user passwords in the event UAA/Credhub is not used and user passwords are encrypted|  
 |                  | Master Key - Clear Text |
-|                  | file:/path/filename - Master Key in secure file | 
+|                  | file:/path/filename - Master Key in secure file **The file: tag must preceed the file name and path**| 
 |                  | credhub:name - The name in Credhub where the master encryption key is stored|
+|                  | **The credhub: tag must preceed the name**|
 |security-enable-oaa-credhub|A boolean (true/false) setting if UAA and Credhub services are used for security|credentials|
 |security-uaa-url|The URL of the server hosting UAA service|    
 |security-uaa-entity|The UAA services entities|
