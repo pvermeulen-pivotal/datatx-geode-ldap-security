@@ -99,6 +99,11 @@ public class LdapUserSecurityManager implements SecurityManager {
 		this.userAuthorities = userAuthorities;
 	}
 
+	/**
+	 * init
+	 * 
+	 * Initializes the GemFire security properties  
+	 */
 	public void init(final Properties securityProperties) throws AuthenticationFailedException {
 		String str;
 		LOG.info("LdapUserSecurityManager processing properties");
@@ -184,6 +189,15 @@ public class LdapUserSecurityManager implements SecurityManager {
 		parseTemplate(template);
 	}
 
+	/**
+	 * getKey
+	 * 
+	 * Get master encryption key
+	 * 
+	 * @param key
+	 * @return
+	 * @throws AuthenticationFailedException
+	 */
 	private String getKey(String key) throws AuthenticationFailedException {
 		if (key != null && key.length() > 0) {
 			if (key.toLowerCase().startsWith(FILE)) {
@@ -222,6 +236,13 @@ public class LdapUserSecurityManager implements SecurityManager {
 		return null;
 	}
 
+	/**
+	 * parseTemplate
+	 * 
+	 * Parses the template from security-ldap-group-template
+	 * 
+	 * @param template
+	 */
 	private void parseTemplate(String template) {
 		templateMap = new HashMap<String, Integer>();
 		String[] templateComponents = template.split(ldapSeperator);
@@ -244,6 +265,13 @@ public class LdapUserSecurityManager implements SecurityManager {
 		}
 	}
 
+	/**
+	 * getUAAToken
+	 * 
+	 * Gets the UAA token 
+	 * 
+	 * @return token
+	 */
 	private String getUAAToken() {
 		String token = null;
 		LOG.info("Getting UAA Token");
@@ -310,6 +338,15 @@ public class LdapUserSecurityManager implements SecurityManager {
 		return token;
 	}
 
+	/**
+	 * getCredhubCredentials
+	 * 
+	 * Get the password from Credhub service
+	 * 
+	 * @param user
+	 * @param token
+	 * @return credhub password
+	 */
 	private String getCredhubCredentials(String user, String token) {
 		String password = null;
 		LOG.info("Getting Credhub Credentials");
@@ -384,6 +421,11 @@ public class LdapUserSecurityManager implements SecurityManager {
 		return password;
 	}
 
+	/**
+	 * authenticate
+	 * 
+	 * Authenticates a GemFire user
+	 */
 	public Principal authenticate(final Properties credentials) throws AuthenticationFailedException {
 		String token;
 		String passwd = null;
@@ -481,6 +523,14 @@ public class LdapUserSecurityManager implements SecurityManager {
 		return new UsernamePrincipal(userName);
 	}
 
+	/**
+	 * checkUserNeedsToBeRefreshed
+	 * 
+	 * Checks to see if the cached user credentials need to be refreshed
+	 * 
+	 * @param userName
+	 * @return
+	 */
 	Optional<UsernamePrincipal> checkUserNeedsToBeRefreshed(String userName) {
 		User currentUser = userAuthorities.get(userName);
 		if (currentUser != null) {
@@ -491,6 +541,13 @@ public class LdapUserSecurityManager implements SecurityManager {
 		return Optional.empty();
 	}
 
+	/**
+	 * authorize
+	 * 
+	 * Checks to see if GemFire user is authorized to perform a GemFire operation
+	 *   
+	 * @return boolean authorized 
+	 */
 	public boolean authorize(final Object principal, final ResourcePermission context) {
 		if (principal == null)
 			return false;
@@ -514,6 +571,14 @@ public class LdapUserSecurityManager implements SecurityManager {
 		return false;
 	}
 
+	/**
+	 * readPermission
+	 * 
+	 * Parses the LDAP group assigned to user for permissions
+	 * 
+	 * @param authorityString
+	 * @return
+	 */
 	protected List<ResourcePermission> readPermission(String authorityString) {
 		String ldapRoles = authorityString.split(",")[0].replace("cn=", "");
 		String[] ldapRole = ldapRoles.split(ldapSeperator);
@@ -525,6 +590,14 @@ public class LdapUserSecurityManager implements SecurityManager {
 		return null;
 	}
 
+	/**
+	 * isValidLdapRole
+	 * 
+	 * Checks to see if the LDAP role is valid
+	 * 
+	 * @param ldapRoles
+	 * @return
+	 */
 	private boolean isValidLdapRole(String[] ldapRoles) {
 		int index;
 		if (templateMap.get(RESOURCE) != null) {
@@ -550,6 +623,14 @@ public class LdapUserSecurityManager implements SecurityManager {
 		return true;
 	}
 
+	/**
+	 * createResourcePermissions
+	 * 
+	 * Creates a resource permission object for a GemFire user
+	 * 
+	 * @param ldapRole
+	 * @return
+	 */
 	private List<ResourcePermission> createResourcePermissions(String[] ldapRole) {
 		String regionName = null;
 		String resource = null;
@@ -592,6 +673,13 @@ public class LdapUserSecurityManager implements SecurityManager {
 		return resourcePermissions;
 	}
 
+	/**
+	 * get_trust_mgr
+	 * 
+	 * Is used to accept any server certificate 
+	 * 
+	 * @return
+	 */
 	private TrustManager[] get_trust_mgr() {
 		TrustManager[] certs = new TrustManager[] { new X509TrustManager() {
 			public X509Certificate[] getAcceptedIssuers() {
@@ -607,6 +695,14 @@ public class LdapUserSecurityManager implements SecurityManager {
 		return certs;
 	}
 
+	/**
+	 * setupSSL
+	 * 
+	 * Sets up the SSL connection factory with trust manager and hostname verifier
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	private SSLConnectionSocketFactory setupSSL() throws Exception {
 		SSLContext ssl_ctx = SSLContext.getInstance("TLS");
 		TrustManager[] trust_mgr = get_trust_mgr();
@@ -615,6 +711,12 @@ public class LdapUserSecurityManager implements SecurityManager {
 		return new SSLConnectionSocketFactory(ssl_ctx, allowAllHosts);
 	}
 
+	/**
+	 * User class
+	 * 
+	 * User principal 
+	 *
+	 */
 	public static class User {
 		String name;
 		String password;
@@ -656,6 +758,10 @@ public class LdapUserSecurityManager implements SecurityManager {
 			return roles;
 		}
 
+		/**
+		 * Builder for User class
+		 *
+		 */
 		@SuppressWarnings("unused")
 		public static final class Builder {
 			private String name;

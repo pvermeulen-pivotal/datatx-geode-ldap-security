@@ -9,6 +9,14 @@ import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
+/**
+ * @author PaulVermeulen
+ *
+ */
+/**
+ * @author PaulVermeulen
+ *
+ */
 public class Encryption {
 	private static final String MASTER = "security-encryption-master";
 	private static final String CIPHER = "AES";
@@ -19,6 +27,16 @@ public class Encryption {
 		return encrypt(plainText, key);
 	}
 
+	/**
+	 * encrypt
+	 * 
+	 * Encrypts a plain text password using a passphrase key
+	 * 
+	 * @param plainText
+	 * @param key
+	 * @return
+	 * @throws EncryptionException
+	 */
 	public static String encrypt(String plainText, byte[] key) throws EncryptionException {
 		try {
 			Cipher cipher = Cipher.getInstance(CIPHER);
@@ -31,11 +49,31 @@ public class Encryption {
 		}
 	}
 
+	/**
+	 * decrypt
+	 * 
+	 * Decrypts an encrypted password using a passphrase key
+	 * 
+	 * @param plainText
+	 * @param encryptedText
+	 * @return
+	 * @throws EncryptionException
+	 */
 	public static String decrypt(String encryptedText) throws EncryptionException {
 		byte[] key = getKey();
 		return encrypt(encryptedText, key);
 	}
 
+	/**
+	 * decrypt
+	 * 
+	 * Decrypts an encrypted password using a passphrase key
+	 * 
+	 * @param plainText
+	 * @param encryptedText
+	 * @return
+	 * @throws EncryptionException
+	 */
 	public static String decrypt(String encryptedText, byte[] key) throws EncryptionException {
 		try {
 			Cipher cipher = Cipher.getInstance(CIPHER);
@@ -71,6 +109,10 @@ public class Encryption {
 		}
 	}
 
+	/**
+	 * EncryptionException class
+	 *
+	 */
 	public static class EncryptionException extends Exception {
 		private static final long serialVersionUID = 1677450115135240761L;
 
@@ -79,6 +121,14 @@ public class Encryption {
 		}
 	}
 
+	/**
+	 * main
+	 * 
+	 * Main routine 
+	 * 
+	 * @param args
+	 * @throws Exception
+	 */
 	public static void main(String[] args) throws Exception {
 		String passwd;
 		if (args != null && args.length == 2) {

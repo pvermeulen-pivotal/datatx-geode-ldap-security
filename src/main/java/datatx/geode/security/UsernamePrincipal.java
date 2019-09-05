@@ -4,6 +4,12 @@ import java.io.Serializable;
 import java.security.Principal;
 import java.util.Map;
 
+/**
+ * UsernamePrincipal class
+ * 
+ * Class used for security principal
+ * 
+ */
 public class UsernamePrincipal implements Principal, Serializable {
 	private static final long serialVersionUID = -5588007118920275400L;
 	private final String userName;
@@ -65,6 +71,10 @@ public class UsernamePrincipal implements Principal, Serializable {
 		return this.userName;
 	}
 
+	/**
+	 * Builder for UsernamePrincipal class
+	 *
+	 */
 	public static final class Builder {
 		private String userName;
 		private Map<String, LdapUserSecurityManager.User> roles;

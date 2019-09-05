@@ -15,10 +15,19 @@ public class UserPasswordAuthInit implements AuthInitialize {
 
 	public static final String PEER = "security-peer";
 
+	/**
+	 * create
+	 * 
+	 * Static method to create UserPasswordAuthInit
+	 */
 	public static AuthInitialize create() {
 		return new UserPasswordAuthInit();
 	}
 
+	/**
+	 * init
+	 * 
+	 */
 	@SuppressWarnings("deprecation")
 	public void init(LogWriter systemLogger, LogWriter securityLogger) throws AuthenticationFailedException {
 	}
@@ -26,6 +35,12 @@ public class UserPasswordAuthInit implements AuthInitialize {
 	private UserPasswordAuthInit() {
 	}
 
+	/**
+	 * getCredentials
+	 * 
+	 * get the user credentials from the security properties
+	 * 
+	 */
 	public Properties getCredentials(Properties props, DistributedMember server, boolean isPeer)
 			throws AuthenticationFailedException {
 		
