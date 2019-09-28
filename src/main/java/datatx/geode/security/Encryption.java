@@ -13,10 +13,6 @@ import javax.crypto.spec.SecretKeySpec;
  * @author PaulVermeulen
  *
  */
-/**
- * @author PaulVermeulen
- *
- */
 public class Encryption {
 	private static final String MASTER = "security-encryption-master";
 	private static final String CIPHER = "AES";
@@ -61,7 +57,7 @@ public class Encryption {
 	 */
 	public static String decrypt(String encryptedText) throws EncryptionException {
 		byte[] key = getKey();
-		return encrypt(encryptedText, key);
+		return decrypt(encryptedText, key);
 	}
 
 	/**
